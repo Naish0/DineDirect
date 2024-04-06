@@ -7,39 +7,35 @@
 <body>
 
     <header>
-      <h1 class="logo">Logo</h1>
+      <h1 class="logo"><img class="Logo" src="logo.png" alt="logo"></h1>
       <nav class="else">
          <button class="sup">About Us</button>
-         <a href="">Information</a>
+
       </nav>
     </header>
 
     <div class="Box">
       <h2>Information About Us</h2>
-      <p>We are DineDirect Developer</p>
+      <p>We are DineDirect Developer<br>-De Jesus, Edgar B.<br>-Angeles, Russel<br>-Garcia, John Bernard<br>-Atiga, Rhapael Rhys<br>-Deguzman, John Chloe<br>-Gomez, Isiah Nikko<br>-Deguzman, John Benedict<br>-Ruannes, Jassen</p>
     </div>
 
      <div>
         <h1 class="font">Welcome To Our Store!</h1>
      </div>
      <div>
-        <button class="b1" onclick="document.location='Ordering.html'">Start</button>
-     </div>
-     <div>
-        <button class="b2">Exit</button>
+        <button class="b1" onclick="document.location='DineDirect.html'">Start</button>
      </div>
 
-      <script>
-  document.addEventListener('DOMContentLoaded', function() {
-   const butt = document.querySelector('.sup');
-   const box = document.querySelector('.Box');     
-   
-   butt.addEventListener('click', ()=> {
-   box.classList.toggle('pop');
-   });
-  });
-</script>
+     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+         const pop = document.querySelector('.sup');
+         const up = document.querySelector('.Box');
 
-     
+         pop.addEventListener('click', ()=> {
+         up.classList.toggle('pop');
+         })
+      })
+     </script>
+      
 </body>
 </html>

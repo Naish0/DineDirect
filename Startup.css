@@ -6,12 +6,8 @@
 }
 
 body {
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    background: url('backg.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-color: #f1c232ff;
 }
 
 .font {
@@ -71,18 +67,20 @@ header {
 }
 
 .Box {
-    position: relative;
+    position: fixed;
+    overflow: auto;
     width: 400px;
     height: 440px;
+    top: 25%;
+    left: 70%;
+    transform: translate(-50%, -50%);
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-    display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
     transform: scale(0);
     transition: transform .5s;
 }
@@ -103,7 +101,7 @@ header {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 20%;
-    background-color: rgb(96, 96, 255); 
+    background: transparent;
     cursor: pointer;
     font-size: 50px;
     color: white;
@@ -112,7 +110,7 @@ header {
 }
 
 .b1:hover {
-   background-color: #2f399b;
+   background-color: #91888870;
    color: black;
    transition-duration: 0.4s;
 }
@@ -123,7 +121,7 @@ header {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 20%;
-    background-color: rgb(96, 96, 255);
+    background: transparent;
     cursor: pointer;
     font-size: 50px;
     color: white;
@@ -132,7 +130,7 @@ header {
 }
 
 .b2:hover {
-    background-color:  #2f399b;
+    background-color:  #91888870;
     color: black;
     transition-duration: 0.4s;
 }
@@ -152,4 +150,15 @@ header {
 .sup:hover {
     background-color: azure;
     color: black;
+}
+
+.Logo {
+    border-radius: 100%;
+    margin-left: 5px;
+    width: 20%;
+}
+
+p {
+    color: white;
+    font-size: 20px;
 }
