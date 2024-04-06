@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('backg.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.font {
+    font-size: 50px;
+    position: absolute;
+    top: 38%; left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.font {
+    color: white;
+}
+
+header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.else a::after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 6px;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.else a:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);   
+}
+
+.else a {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    margin-left: 15px;
+}
+
+.Box {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    transform: scale(0);
+    transition: transform .5s;
+}
+
+.Box h2 {
+    font-size: 2em;
+    color: white;
+    text-align: center;
+}
+
+.Box.pop {
+    transform: scale(1);
+}
+
+.b1 {
+    position: absolute;
+    top: 50%; left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    background-color: rgb(96, 96, 255); 
+    cursor: pointer;
+    font-size: 50px;
+    color: white;
+    border: 3px solid;
+    border-radius: 30px;
+}
+
+.b1:hover {
+   background-color: #2f399b;
+   color: black;
+   transition-duration: 0.4s;
+}
+
+.b2 {
+    position: absolute;
+    top: 60%; left: 50% ;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    background-color: rgb(96, 96, 255);
+    cursor: pointer;
+    font-size: 50px;
+    color: white;
+    border: 3px solid;
+    border-radius: 30px;
+}
+
+.b2:hover {
+    background-color:  #2f399b;
+    color: black;
+    transition-duration: 0.4s;
+}
+
+.sup {
+    background: transparent;
+    color: #fff;
+    border: solid 2px white;
+    border-radius: 5px;
+    width: 130px;
+    height: 40px;
+    font-size: 1em;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.sup:hover {
+    background-color: azure;
+    color: black;
+}
