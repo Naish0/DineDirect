@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1c232ff;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid white; /* Add border */
+        }
+
+        button {
+            background-color: #ffffff;
+            color: black;
+            font-size: 15px;
+            width: 100px;
+            height: 50px;
+            border: 2px solid #f9f9f9;
+            border-radius: 4px;
+            cursor: pointer;
+            transition-duration: .2s;
+        }
+
+        button:hover {
+            background-color: #f1c232ff;
+            color: white;
+        }
+
+        .text {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div><button onclick="document.location='DineDirect.html'">Back to Menu</button></div>
+
+    <h1>Receipt</h1>
+    
+    <div class="column" id="receiptItems">
+        <h2>Items:</h2>
+    </div>
+    
+    <div class="column" id="quantity">
+        <h2>Quantity:</h2>
+    </div>
+    
+    <div class="column" id="total">
+        <h2>Total:</h2>
+    </div>
+
+    <div>
+        <h1 class="text">Thank you, for buying in our store</h1>
+    </div>
+
+    <script>
+         window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cartData = urlParams.get('cart');
+            if (cartData) {
+                const cart = JSON.parse(decodeURIComponent(cartData));
+                let itemsHTML = '';
+                let quantityHTML = '';
+                let total = 0;
+                for (let item of cart) {
+                    itemsHTML += "<p>" + item.items + "</p>";
+                    quantityHTML += "<p>" + item.quantity + "</p>";
+                    total += item.price * item.quantity;
+                }
+                document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
+                document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
+                document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
+            }
+        };
+
+
+        
+    </script>
+</body>
+
+</html>
