@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt</title>
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -30,7 +29,7 @@
             padding: 10px;
             box-sizing: border-box;
             margin: 0;
-            border: 2px solid black; /* Add border */
+            border: 2px solid black; 
         }
 
         button {
@@ -50,11 +49,35 @@
             color: white;
         }
 
-        .text {
+        .alert {
             position: fixed;
-            left: 50%;
             top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
+            background-color: #f1c232ff;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .alert p {
+            margin: 0;
+            font-size: 20px;
+            color: white;
+        }
+
+        .alert button {
+            margin-top: 10px;
+            background-color: #ffffff;
+            color: black;
+            border: 2px solid #f9f9f9;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .alert button:hover {
+            background-color: #f1c232ff;
+            color: white;
         }
 
         header {
@@ -89,12 +112,23 @@
         <h2>Total:</h2>
     </div>
 
-    <div>
-        <h1 class="text">Thank you for your purchase!</h1>
+    <div class="alert" id="customAlert">
+        <p>Thank you for your purchase!</p>
+        <button onclick="hideAlert()">Close</button>
     </div>
 
     <script>
-         window.onload = function() {
+        function purchase() {
+            
+            document.getElementById('customAlert').style.display = 'block';
+        }
+
+        function hideAlert() {
+            
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const cartData = urlParams.get('cart');
             if (cartData) {
@@ -113,9 +147,6 @@
             }
         };
 
-
-        
     </script>
 </body>
-
 </html>
