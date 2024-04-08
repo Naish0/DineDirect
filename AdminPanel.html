@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>DineDirect Admin Panel</title>
+   <style>
+       body {
+           font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           background-color: #f4f4f4;
+       }
+       header {
+           background-color: #f1c232ff;
+           color: #fff;
+           text-align: center;
+           padding: 20px 0;
+       }
+       section {
+           margin: 20px auto;
+           width: 80%;
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+           gap: 20px;
+       }
+       .contai1 {
+           border: 1px solid #ccc;
+           padding: 20px;
+           text-align: center;
+       }
+       .contai1 p {
+           margin: 0;
+       }
+       button {
+           padding: 10px 20px;
+           background-color: #007bff;
+           color: #fff;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+       }
+       button:hover {
+           background-color: #0056b3;
+       }
+       footer {
+           background-color: #f1c232ff;
+           color: #fff;
+           text-align: center;
+           padding: 10px 0;
+           position: fixed;
+           bottom: 0;
+           width: 100%;
+       }
+       #customAlert {
+           display: none;
+           position: fixed;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background-color: rgba(0, 0, 0, 0.5);
+           z-index: 999;
+       }
+       .modal {
+           background-color: #fff;
+           width: 300px;
+           padding: 20px;
+           border-radius: 5px;
+           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+       }
+       .close {
+           float: right;
+           cursor: pointer;
+       }
+   </style>
+</head>
+<body>
+    <header>
+        <h1>DineDirect Admin Panel</h1>
+    </header>
+
+    <section>
+        <div class="contai1" data-stock="50.00">
+            <p>Hot Dog, Egg with Rice</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Hot Dog, Egg with Rice">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Egg with Rice</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Egg with Rice">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Footlong</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Footlong">Restock</button>
+        </div>
+        
+        <div class="contai1" data-stock="50.00">
+            <p>Piattos</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Piattos">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Mang Juan</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Mang Juan">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Chicken Skin</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Chicken Skin">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Cheese Cake</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Cheese Cake">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Hansel Chocolate</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Hansel Chocolate">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Doowee Donut</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Doowee Donut">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Coke</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Coke">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Royal</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Royal">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Sprite</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Sprite">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Water</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Water">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Nestea Lemon</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Nestea Lemon">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Fanta</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Fanta">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Pepsi</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Pepsi">Restock</button>
+        </div>
+
+        <div class="contai1" data-stock="50.00">
+            <p>Mountain Dew</p>
+            <span class="stock">Current Stock: 50</span>
+            <button class="restock-btn" data-item="Mountain Dew">Restock</button>
+        </div>
+    </section>
+
+    <footer>
+        <a href="DineDirect.html" style="color: #fff; text-decoration: none;">Back to Main Site</a>
+    </footer>
+
+    <div id="customAlert">
+        <div class="modal">
+            <span class="close" onclick="Close()">&times;</span>
+            <p id="Message"></p>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            const restockButtons = document.querySelectorAll('.restock-btn');
+
+            restockButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemName = this.getAttribute('data-item');
+                    console.log('Item name:', itemName); // Log item name to check if it's correctly retrieved
+                    restockItem(itemName);
+                });
+            });
+
+            function restockItem(itemName) {
+                // Set stock to 50
+                const newStock = 50;
+
+                // Store updated stock in local storage
+                localStorage.setItem(itemName, newStock.toString());
+
+                showAlert(`${itemName} restocked successfully! Current stock: ${newStock}`);
+            }
+
+            function showAlert(message) {
+                console.log('Alert:', message); // Log the message to check if it's correctly displayed
+                document.getElementById('Message').innerText = message;
+                document.getElementById('customAlert').style.display = "block";
+
+                // Add event listener for close button
+                document.querySelector('.close').addEventListener('click', function() {
+                    Close();
+                });
+            }
+    
+            function Close() {
+                document.getElementById('customAlert').style.display = "none";
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('.contai1');
+        items.forEach(item => {
+            const itemName = item.querySelector('p').innerText.trim();
+            const stock = localStorage.getItem(itemName); // Update key to match DineDirect.html
+            if (stock !== null) {
+                const stockElement = item.querySelector('.stock');
+                if (stockElement) {
+                    stockElement.textContent = "Current Stock: " + stock;
+                }
+            }
+        });
+    });
+
+
+    </script>
+</body>
+</html>

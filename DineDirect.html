@@ -231,11 +231,25 @@ if (stock > 0 && quantity >= 0) {
   span.innerText = quantity; 
 
   localStorage.setItem(items, stock.toFixed(2));
+
+  document.addEventListener('DOMContentLoaded', function() {
+        const restockButton = document.querySelector('.restock-btn'); // Fix selector
+
+        restockButton.addEventListener('click', function() {
+            const allContainers = document.querySelectorAll('.contai1');
+            allContainers.forEach(container => {
+                container.querySelector('.stock').textContent = "Stock: 50.00"; 
+                const itemName = container.querySelector('p').innerText.trim();
+                localStorage.setItem(itemName, "50.00"); // Update key to match AdminPanel.html
+            });
+            showAlert("Restocked successfully!");
+        });
+    });
+    
 } else {
   showAlert("Sorry, this item is currently out of stock!");
 }
 }
-
 
 function redirectToReceipt() {
 let cartData = encodeURIComponent(JSON.stringify(cart));
@@ -249,7 +263,6 @@ if (cart.length > 0) {
 }
 }
 
-
 function showAlert(message) {
 document.getElementById('Message').innerText = message;
 document.getElementById('customAlert').style.display = "block";
@@ -258,7 +271,6 @@ document.getElementById('customAlert').style.display = "block";
 function Close() {
 document.getElementById('customAlert').style.display = "none";
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -285,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showAlert("Restocked successfully!");
     });
 });
+
         </script>
 </body>
 </html>
