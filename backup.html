@@ -2,20 +2,20 @@
 <head>
    <title>DineDirect</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="DineDirect.css">
+   <link rel="stylesheet" href="backup.css">
 </head>
 <body>
     <header>
         <img class="logo" src="logo.png" alt="logo">
-        <h1>Welcome to DineDirect!</h1>
         <nav class="Head">
-          <button class="rc" onclick="receipt()">Go To Cart</button>
+          <button class="fd">Food</button>
+          <button class="DK">Drinks</button>
        </nav>
-       
+
     </header>
    
     <section>
-          <div><h1>Food and Snacks</h1></div>
+          <div><h1>Order Food and Snacks</h1></div>
           <div class="contai1" data-stock="50.00">
             <img class="pic1"src="hot.jpg" alt="image" width="200px" height="200px"/>
             <p>Hot Dog, Egg with Rice</p>
@@ -109,7 +109,7 @@
             
 
     <section class="dr">
-            <div><h1>Drinks</h1></div>
+            <div><h1>Order Drinks</h1></div>
             <div class="contai1">
                 <img class="pic1" src="coke.jpg" alt="image" width="200px" height="200px"/>
                 <p>Coke</p>
@@ -199,7 +199,7 @@
      </div>
 
      <footer>
-        
+        <button class="rc" onclick="receipt()">Add To Cart</button>
      </footer>
 
     <script>
@@ -232,7 +232,7 @@ if (stock > 0 && quantity >= 0) {
 
   localStorage.setItem(items, stock.toFixed(2));
 } else {
-  showAlert("Sorry, this item is currently out of stock!");
+  showAlert("Sorry, try to order again.");
 }
 }
 
@@ -249,6 +249,23 @@ if (cart.length > 0) {
 }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+const food = document.querySelector('.fd');
+const pop = document.querySelector('section');
+
+food.addEventListener('click', ()=> {
+  pop.classList.toggle('up');
+});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+const drinks = document.querySelector('.DK');
+const up = document.querySelector('.dr');
+
+drinks.addEventListener('click', ()=> {
+  up.classList.toggle('up');
+});
+});
 
 function showAlert(message) {
 document.getElementById('Message').innerText = message;

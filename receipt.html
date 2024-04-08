@@ -9,14 +9,19 @@
         * {
             margin: 0;
             padding: 0;
+            color: black;
             font-family: Arial, Helvetica, sans-serif;
             box-sizing: border-box;
         }
 
         body {
-            background-color: #f1c232ff;
+            background-color: whitesmoke;
             min-height: 100vh;
             color: white;
+        }
+
+        body h1 {
+            margin-top: 20px;
         }
 
         .column {
@@ -25,7 +30,7 @@
             padding: 10px;
             box-sizing: border-box;
             margin: 0;
-            border: 1px solid white; /* Add border */
+            border: 2px solid black; /* Add border */
         }
 
         button {
@@ -51,11 +56,24 @@
             top: 50%;
             transform: translate(-50%, -50%);
         }
+
+        header {
+            background-color: #f1c232ff;
+            padding: 20px 50px;
+        }   
+
+        .bt {
+            position: absolute;
+            float: right;
+            left: 85%;
+        }
     </style>
 </head>
 <body>
-
-    <div><button onclick="document.location='DineDirect.html'">Back to Menu</button></div>
+  <header>
+    <button onclick="document.location='DineDirect.html'">Back to Menu</button>
+    <button class="bt" onclick="purchase()">Purchase</button>
+  </header>
 
     <h1>Receipt</h1>
     
@@ -72,7 +90,7 @@
     </div>
 
     <div>
-        <h1 class="text">Thank you, for buying in our store</h1>
+        <h1 class="text">Thank you for your purchase!</h1>
     </div>
 
     <script>
