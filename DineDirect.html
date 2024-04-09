@@ -227,10 +227,10 @@ if (stock > 0 && quantity >= 0) {
       cart.push({ items: items, price: price, quantity: quantity });
   }
   stock -= change;
-  button.parentNode.querySelector('.stock').textContent = "Stock: " + stock.toFixed(2);
+  button.parentNode.querySelector('.stock').textContent = "Stock: " + stock.toFixed(0);
   span.innerText = quantity; 
 
-  localStorage.setItem(items, stock.toFixed(2));
+  localStorage.setItem(items, stock.toFixed(0));
 
   document.addEventListener('DOMContentLoaded', function() {
         const restockButton = document.querySelector('.restock-btn'); 
