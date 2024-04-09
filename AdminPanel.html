@@ -88,102 +88,119 @@
     <section>
         <div class="contai1" data-stock="50.00">
             <p>Hot Dog, Egg with Rice</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Hot Dog, Egg with Rice">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Egg with Rice</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Egg with Rice">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Footlong</p>
+            <input type="number"placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Footlong">Restock</button>
         </div>
         
         <div class="contai1" data-stock="50.00">
             <p>Piattos</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Piattos">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Mang Juan</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Mang Juan">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Chicken Skin</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Chicken Skin">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Cheese Cake</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Cheese Cake">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Hansel Chocolate</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Hansel Chocolate">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Doowee Donut</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Doowee Donut">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Coke</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Coke">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Royal</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Royal">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Sprite</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Sprite">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Water</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Water">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Nestea Lemon</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Nestea Lemon">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Fanta</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Fanta">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Pepsi</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Pepsi">Restock</button>
         </div>
 
         <div class="contai1" data-stock="50.00">
             <p>Mountain Dew</p>
+            <input type="number" placeholder="Quantity to restock">
             <span class="stock">Current Stock: 50</span>
             <button class="restock-btn" data-item="Mountain Dew">Restock</button>
         </div>
@@ -202,43 +219,48 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-            const restockButtons = document.querySelectorAll('.restock-btn');
+        const restockButtons = document.querySelectorAll('.restock-btn');
 
-            restockButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const itemName = this.getAttribute('data-item');
-                    console.log('Item name:', itemName); // Log item name to check if it's correctly retrieved
-                    restockItem(itemName);
-                });
+        restockButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.getAttribute('data-item');
+                const restockQuantity = parseFloat(this.parentNode.querySelector('input[type="number"]').value);
+                console.log('Item name:', itemName);
+                console.log('Restock quantity:', restockQuantity);
+                restockItem(itemName, restockQuantity);
             });
-
-            function restockItem(itemName) {
-                // Set stock to 50
-                const newStock = 50;
-
-                // Store updated stock in local storage
-                localStorage.setItem(itemName, newStock.toString());
-
-                showAlert(`${itemName} restocked successfully! Current stock: ${newStock}`);
-            }
-
-            function showAlert(message) {
-                console.log('Alert:', message); // Log the message to check if it's correctly displayed
-                document.getElementById('Message').innerText = message;
-                document.getElementById('customAlert').style.display = "block";
-
-                // Add event listener for close button
-                document.querySelector('.close').addEventListener('click', function() {
-                    Close();
-                });
-            }
-    
-            function Close() {
-                document.getElementById('customAlert').style.display = "none";
-            }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        function restockItem(itemName, restockQuantity) {
+            // Check if restock quantity is a valid number
+            if (!isNaN(restockQuantity) && restockQuantity >= 0) {
+                // Get the existing stock from local storage or default to 0
+                let stock = parseFloat(localStorage.getItem(itemName)) || 0;
+                // Update the stock by adding the restock quantity
+                stock += restockQuantity;
+                // Store updated stock in local storage
+                localStorage.setItem(itemName, stock.toString());
+                showAlert(`${itemName} restocked successfully! Current stock: ${stock}`);
+            } else {
+                showAlert("Please enter a valid restock quantity.");
+            }
+        }
+
+        function showAlert(message) {
+            console.log('Alert:', message);
+            document.getElementById('Message').innerText = message;
+            document.getElementById('customAlert').style.display = "block";
+
+            document.querySelector('.close').addEventListener('click', function() {
+                Close();
+            });
+        }
+
+        function Close() {
+            document.getElementById('customAlert').style.display = "none";
+        }
+    });
+document.addEventListener('DOMContentLoaded', function() {
         const items = document.querySelectorAll('.contai1');
         items.forEach(item => {
             const itemName = item.querySelector('p').innerText.trim();

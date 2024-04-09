@@ -233,14 +233,14 @@ if (stock > 0 && quantity >= 0) {
   localStorage.setItem(items, stock.toFixed(2));
 
   document.addEventListener('DOMContentLoaded', function() {
-        const restockButton = document.querySelector('.restock-btn'); // Fix selector
+        const restockButton = document.querySelector('.restock-btn'); 
 
         restockButton.addEventListener('click', function() {
             const allContainers = document.querySelectorAll('.contai1');
             allContainers.forEach(container => {
                 container.querySelector('.stock').textContent = "Stock: 50.00"; 
                 const itemName = container.querySelector('p').innerText.trim();
-                localStorage.setItem(itemName, "50.00"); // Update key to match AdminPanel.html
+                localStorage.setItem(itemName, "50.00"); 
             });
             showAlert("Restocked successfully!");
         });
