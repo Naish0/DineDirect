@@ -95,7 +95,7 @@
 <body>
   <header>
     <button onclick="document.location='DineDirect.html'">Back to Menu</button>
-    <button class="bt" onclick="purchase()">Purchase</button>
+    <button class="bt" id="Purchasebt" onclick="purchase()">Purchase</button>
   </header>
 
     <h1>Receipt</h1>
@@ -120,6 +120,8 @@
     <script>
         function purchase() {
             
+            document.getElementById('Purchasebt').disabled = true;
+
             document.getElementById('customAlert').style.display = 'block';
         }
 

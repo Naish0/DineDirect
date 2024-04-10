@@ -228,6 +228,8 @@
                 console.log('Item name:', itemName);
                 console.log('Restock quantity:', restockQuantity);
                 restockItem(itemName, restockQuantity);
+
+                this.parentNode.querySelector('input[type="number"]').value = '';
             });
         });
 
