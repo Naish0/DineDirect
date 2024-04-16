@@ -90,6 +90,14 @@
             float: right;
             left: 85%;
         }
+
+        footer {
+            background-color: #f1c232ff;
+            position: fixed;
+            top: 95%;
+            padding: 30px 50px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -98,7 +106,7 @@
     <button class="bt" id="Purchasebt" onclick="purchase()">Purchase</button>
   </header>
 
-    <h1>Receipt</h1>
+    <h1>Your Cart</h1>
     
     <div class="column" id="receiptItems">
         <h2>Items:</h2>
@@ -116,6 +124,10 @@
         <p>Thank you for your purchase!</p>
         <button onclick="hideAlert()">Close</button>
     </div>
+
+    <footer>
+
+    </footer>
 
     <script>
 function purchase() {

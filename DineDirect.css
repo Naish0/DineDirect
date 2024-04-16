@@ -24,6 +24,7 @@ header {
     display: flex;
     align-items: center;
 }
+
 label {
     color: #fff;
     font-size: 1.1em;
@@ -70,10 +71,10 @@ section h1 {
 }
 
 footer {
-    position: fixed;
-    right: 0%;
-    top: 95%
-    
+    background-color: #f1c232ff;
+    position: absolute;
+    width: 100%;
+    padding: 40px 50px;
 }
 
 .contai1 {
@@ -180,3 +181,4 @@ button:hover {
 .quantity {
     color: #000000;
 }
+
