@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .receipt {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .receipt-items {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .receipt-item {
+            margin-bottom: 10px;
+        }
+
+        .item-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .receipt-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="receipt-header">
+            <h2>Receipt</h2>
+            <p>Thank you for your purchase!</p>
+        </div>
+
+        <div class="receipt-items">
+            <div class="receipt-item">
+                <div class="item-details">
+                    <span>Item</span>
+                    <span>Price</span>
+                </div>
+                <!-- Dynamically generated items will go here -->
+            </div>
+        </div>
+
+        <div class="total">
+            <strong>Total:</strong> <span id="totalAmount">0.00</span>
+        </div>
+
+        <div class="receipt-footer">
+            <p>DineDirect</p>
+            <p>Arellano University Elisa Esguerra Campus</p>
+            <p>Contact: 123-456-7890</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const cartData = localStorage.getItem('final_receipt');
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                let total = 0;
+                let itemsHTML = '';
+                for (let item of cart) {
+                    itemsHTML += `
+                        <div class="item-details">
+                            <span>${item.quantity}</span>
+                            <span>${item.items}</span>
+                            <span>${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>`;
+                    total += item.price * item.quantity;
+                }
+                document.querySelector('.receipt-item').innerHTML = itemsHTML;
+                document.getElementById('totalAmount').textContent = total.toFixed(2);
+            }
+        };
+    </script>
+</body>
+</html>

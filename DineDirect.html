@@ -231,6 +231,7 @@ if (stock > 0 && quantity >= 0) {
   span.innerText = quantity; 
 
   localStorage.setItem(items, stock.toFixed(0));
+  localStorage.setItem('cart', JSON.stringify(cart));
 
   document.addEventListener('DOMContentLoaded', function() {
         const restockButton = document.querySelector('.restock-btn'); 
@@ -241,6 +242,7 @@ if (stock > 0 && quantity >= 0) {
                 container.querySelector('.stock').textContent = "Stock: 50.00"; 
                 const itemName = container.querySelector('p').innerText.trim();
                 localStorage.setItem(itemName, "50.00"); 
+                
             });
             showAlert("Restocked successfully!");
         });
@@ -252,16 +254,32 @@ if (stock > 0 && quantity >= 0) {
 }
 
 function redirectToReceipt() {
-let cartData = encodeURIComponent(JSON.stringify(cart));
-let url = "receipt.html?cart=" + cartData;
-window.location.href = url;
+    if (cart.length > 0) {
+        let cartData = encodeURIComponent(JSON.stringify(cart));
+        let url = "receipt.html?cart=" + cartData;
+        window.location.href = url;
+    } else {
+        alert('Your cart is empty.'); // Show an alert if cart is empty
+    }
 }
 
 function receipt() {
-if (cart.length > 0) { 
-  redirectToReceipt();
+    if (cart.length > 0) {
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save cart data to localStorage 
+        redirectToReceipt();
+    } else {
+        alert('Your cart is empty.'); // Show an alert if cart is empty
+    }
 }
-}
+
+// Clear cart data from localStorage when returning to the main menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if there's cart data in localStorage
+    let storedCart = localStorage.getItem('cart');
+    if (storedCart !== null) {
+
+    }
+});
 
 function showAlert(message) {
 document.getElementById('Message').innerText = message;
@@ -298,6 +316,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    let storedCart = localStorage.getItem('cart');
+    if (storedCart !== null) {
+        // If cart data is found, parse and use it
+        cart = JSON.parse(storedCart);
+        // Now you need to display the cart items on the page
+        displayCartItems(cart);
+    }
+});
+
+// Function to display cart items on the page
+function displayCartItems(cart) {
+    // Logic to display cart items on the page
+    // This can be similar to the logic you have in your `All` function
+    // But instead of modifying the cart, you'll just display the items
+    // You'll iterate through the `cart` array and update the DOM accordingly
+}
         </script>
 </body>
 </html>

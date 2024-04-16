@@ -118,37 +118,48 @@
     </div>
 
     <script>
-        function purchase() {
+function purchase() {
+        document.getElementById('Purchasebt').disabled = true;
+        document.getElementById('customAlert').style.display = 'block';
+       // Get cart items from local storage
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+                // Pass cart items to final receipt page
+                localStorage.setItem('final_receipt', cartData);
+            }
             
-            document.getElementById('Purchasebt').disabled = true;
-
-            document.getElementById('customAlert').style.display = 'block';
+            // Clear the cart (local storage)
+            localStorage.removeItem('cart');
+            
+            // Redirect to final receipt page
+            window.location.href = 'final_receipt.html';
         }
 
         function hideAlert() {
-            
             document.getElementById('customAlert').style.display = 'none';
         }
 
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const cartData = urlParams.get('cart');
-            if (cartData) {
-                const cart = JSON.parse(decodeURIComponent(cartData));
-                let itemsHTML = '';
-                let quantityHTML = '';
-                let total = 0;
-                for (let item of cart) {
-                    itemsHTML += "<p>" + item.items + "</p>";
-                    quantityHTML += "<p>" + item.quantity + "</p>";
-                    total += item.price * item.quantity;
-                }
-                document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
-                document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
-                document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
-            }
-        };
+    function hideAlert() {
+        document.getElementById('customAlert').style.display = 'none';
+    }
 
+    window.onload = function() {
+        const cartData = localStorage.getItem('cart');
+        if (cartData) {
+            const cart = JSON.parse(cartData);
+            let itemsHTML = '';
+            let quantityHTML = '';
+            let total = 0;
+            for (let item of cart) {
+                itemsHTML += "<p>" + item.items + "</p>";
+                quantityHTML += "<p>" + item.quantity + "</p>";
+                total += item.price * item.quantity;
+            }
+            document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
+            document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
+            document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
+        }
+    };
     </script>
 </body>
 </html>
