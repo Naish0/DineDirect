@@ -154,24 +154,37 @@ function purchase() {
     function hideAlert() {
         document.getElementById('customAlert').style.display = 'none';
     }
+  function removeItem(index) {
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+        let cart = JSON.parse(cartData);
+        let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
+        let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
+        stock += removedItem.quantity; // Add the removed item's quantity back to stock
+        localStorage.setItem(removedItem.items, stock.toFixed(2)); // Update stock in local storage
+        localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+        location.reload(); // Reload the page to reflect the changes
+    }
+}
 
-    window.onload = function() {
-        const cartData = localStorage.getItem('cart');
-        if (cartData) {
-            const cart = JSON.parse(cartData);
-            let itemsHTML = '';
-            let quantityHTML = '';
-            let total = 0;
-            for (let item of cart) {
-                itemsHTML += "<p>" + item.items + "</p>";
-                quantityHTML += "<p>" + item.quantity + "</p>";
-                total += item.price * item.quantity;
+        window.onload = function() {
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+                const cart = JSON.parse(cartData);
+                let itemsHTML = '';
+                let quantityHTML = '';
+                let total = 0;
+                for (let i = 0; i < cart.length; i++) {
+                    const item = cart[i];
+                    itemsHTML += "<p>" + item.items + " <button onclick='removeItem(" + i + ")'>X</button></p>";
+                    quantityHTML += "<p>" + item.quantity + "</p>";
+                    total += item.price * item.quantity;
+                }
+                document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
+                document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
+                document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
             }
-            document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
-            document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
-            document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
-        }
-    };
+        };
     </script>
 </body>
 </html>
