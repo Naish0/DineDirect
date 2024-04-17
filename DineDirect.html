@@ -6,35 +6,33 @@
 </head>
 <body>
     <header>
-        <h1>Welcome To DineDirect</h1>
-     <nav class="Head">
-        <label>Total: </label>
-        <span id="total">0.00</span>
-        <label>Quantity: </label>
-        <span id="quan">0.00</span>
-        <button class="fd">Food</button>
-        <button class="DK">Drinks</button>
-        <button class="rc" onclick="receipt()">Receipt</button>
-        <button class="cl" onclick="Clear()">Clear</button>
-        
-     </nav>
+        <img class="logo" src="logo.png" alt="logo">
+        <h1>Welcome to DineDirect!</h1>
+        <nav class="Head">
+          <button class="rc" onclick="receipt()">Go To Cart</button>
+       </nav>
+       
     </header>
-
+   
     <section>
-          <div><h1>Order Food and Snaks</h1></div>
+          <div><h1>Food and Snacks</h1></div>
           <div class="contai1" data-stock="50.00">
             <img class="pic1"src="hot.jpg" alt="image" width="200px" height="200px"/>
             <p>Hot Dog, Egg with Rice</p>
             <p>Price: 30.00</p>
-            <button class="b1" onclick="All('Hot dog, egg with rice', 30.00, this)">Add to Cart</button>
+            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', -1)">-</button>
+            <span class="quantity" id="text1">0</span>
+            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', 1)">+</button>
             <div><span class="stock">Stock: 50.00</span></div>
          </div>
          
-            <div class="contai1">
+            <div class="contai1" data-stock="50.00">
                <img class="pic1"src="egg.jpeg" alt="image" width="200px" height="200px"/>
                <p>Egg with Rice</p>
                <p>Price: 25.00</p>
-               <button class="b1" onclick="All('Egg with rice', 25.00, this)">Add To Cart</button>
+               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', -1)">-</button>
+               <span class="quantity" id="text2">0</span>
+               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', 1)">+</button>
                <div><span class="stock">Stock: 50.00</span></div>
             </div>
             
@@ -42,7 +40,9 @@
                 <img class="pic1"src="footlong.png" alt="image" width="200px" height="200px"/>
                 <p>Footlong</p>
                 <p>Price: 20.00</p>
-                <button class="b1" onclick="All('Footlong', 20.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', -1)">-</button>
+                <span class="quantity" id="text3">0</span>
+                <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
@@ -50,7 +50,9 @@
                 <img src="piattos.png" alt="snaks" width="200px" height="200px">
                 <p>Piattos</p>
                 <p>Price: 15.00</p>
-                <button class="b1" onclick="All('Piattos', 15.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Piattos', 15.00, this, 'text4', -1)">-</button>
+                <span class="quantity" id="text4">0</span>
+                <button class="b1" onclick="All('Piattos', 15.00, this, 'text4', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
@@ -58,7 +60,9 @@
                 <img src="mangjuan.png" alt="snaks" width="200px" height="200px">
                 <p>Mang Juan</p>
                 <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Mang Juan', 13.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Mang Juan', 13.00, this, 'text5', -1)">-</button>
+                <span class="quantity" id="text5">0</span>
+                <button class="b1" onclick="All('Mang Juan', 13.00, this, 'text5', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
@@ -66,15 +70,19 @@
                 <img src="chickenskin.png" alt="snaks" width="200px" height="200px">
                 <p>Chicken Skin</p>
                 <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Chicken Skin', 13.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Chicken Skin', 13.00, this, 'text6', -1)">-</button>
+                <span class="quantity" id="text6">0</span>
+                <button class="b1" onclick="All('Chicken Skin', 13.00, this, 'text6', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
              <div class="contai1">
                 <img src="cheesecake.png" alt="snaks" width="200px" height="200px">
                 <p>Cheese Cake</p>
-                <p>Price: 12.00</p>
-                <button class="b1" onclick="All('Cheese Cake', 13.00, this)">Add To Cart</button>
+                <p>Price: 13.00</p>
+                <button class="b1" onclick="All('Cheese Cake', 13.00, this, 'text7', -1)">-</button>
+                <span class="quantity" id="text7">0</span>
+                <button class="b1" onclick="All('Cheese Cake', 13.00, this, 'text7', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
@@ -82,7 +90,9 @@
                 <img src="hansel.jpg" alt="snaks" width="200px" height="200px">
                 <p>Hansel Chocolate</p>
                 <p>Price: 11.00</p>
-                <button class="b1" onclick="All('Hansel Chocolate', 11.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Hansel Chocolate', 11.00, this, 'text8', -1)">-</button> 
+                <span class="quantity" id="text8">0</span>
+                <button class="b1" onclick="All('Hansel Chocolate', 11.00, this, 'text8', 1)">+</button> 
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     
@@ -90,18 +100,23 @@
                 <img src="donut.jpg" alt="snaks" width="200px" height="200px">
                 <p>Doowee Donut</p>
                 <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Doowee Donut', 13.00, this)">Add To Cart</button>
+                <button class="b1" onclick="All('Doowee Donut', 13.00, this, 'text9', -1)">-</button>
+                <span class="quantity" id="text9">0</span>
+                <button class="b1" onclick="All('Doowee Donut', 13.00, this, 'text9', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
              </div>
     </section>
-    
+            
+
     <section class="dr">
-            <div><h1>Order Drinks</h1></div>
+            <div><h1>Drinks</h1></div>
             <div class="contai1">
                 <img class="pic1" src="coke.jpg" alt="image" width="200px" height="200px"/>
                 <p>Coke</p>
                 <p>Price: 15.00</p>
-                <button class="b1" onclick="All('Coke', 15.00, this)">Add to Cart</button>
+                <button class="b1" onclick="All('Coke', 15.00, this, 'text10', -1)">-</button>
+                <span class="quantity" id="text10">0</span>
+                <button class="b1" onclick="All('Coke', 15.00, this, 'text10', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
                 </div>
                 
@@ -109,7 +124,9 @@
                 <img class="pic1" src="royal.jpg" alt="image" width="200px" height="200px"/>
                 <p>Royal</p>
                 <p>Price: 15.00</p>
-                <button class="b1" onclick="All('Royal', 15.00, this)">Add to Cart</button>
+                <button class="b1" onclick="All('Royal', 15.00, this, 'text11', -1)">-</button>
+                <span class="quantity" id="text11">0</span>
+                <button class="b1" onclick="All('Royal', 15.00, this, 'text11', 1)">+</button>
                 <div><span class="stock">Stock: 50.00</span></div>
                 </div>
         
@@ -117,7 +134,9 @@
                     <img class="pic1" src="sprite.jpg" alt="image" width="200px" height="200px"/>
                     <p>Sprite</p>
                     <p>Price: 15.00</p>
-                    <button class="b1" onclick="All('Sprite', 15.00, this)">Add to Cart</button>
+                    <button class="b1" onclick="All('Sprite', 15.00, this, 'text12', -1)">-</button>
+                    <span class="quantity" id="text12">0</span>
+                    <button class="b1" onclick="All('Sprite', 15.00, this, 'text12', 1)">+</button>
                     <div><span class="stock">Stock: 50.00</span></div>
                   </div>
         
@@ -125,7 +144,9 @@
                         <img class="pic1" src="water.jpg" alt="image" width="200px" height="200px"/>
                         <p>Water</p>
                         <p>Price: 12.00</p>
-                        <button class="b1" onclick="All('Water', 12.00, this)">Add to Cart</button>
+                        <button class="b1" onclick="All('Water', 12.00, this, 'text13', -1)">-</button>
+                        <span class="quantity" id="text13">0</span>
+                        <button class="b1" onclick="All('Water', 12.00, this, 'text13', 1)">+</button>
                         <div><span class="stock">Stock: 50.00</span></div>
                     </div> 
         
@@ -133,7 +154,9 @@
                        <img class="pic1" src="nestea.png" alt="image" width="200px" height="200px"/>
                        <p>Nestea Lemon</p>
                        <p>Price: 14.00</p>
-                       <button class="b1" onclick="All('Nestea Lemon', 14.00, this)">Add to Cart</button>
+                       <button class="b1" onclick="All('Nestea Lemon', 14.00, this, 'text14', -1)">-</button>
+                       <span class="quantity" id="text14">0</span>
+                       <button class="b1" onclick="All('Nestea Lemon', 14.00, this, 'text14', 1)">+</button>
                        <div><span class="stock">Stock: 50.00</span></div>
                    </div> 
                  
@@ -141,7 +164,9 @@
                     <img class="pic1" src="fanta.png" alt="image" width="200px" height="200px"/>
                     <p>Fanta</p>
                     <p>Price: 15.00</p>
-                    <button class="b1" onclick="All('Fanta', 15.00, this)">Add to Cart</button>
+                    <button class="b1" onclick="All('Fanta', 15.00, this, 'text15', -1)">-</button>
+                    <span class="quantity" id="text15">0</span>
+                    <button class="b1" onclick="All('Fanta', 15.00, this, 'text15', 1)">+</button>
                     <div><span class="stock">Stock: 50.00</span></div>
                 </div> 
         
@@ -149,7 +174,9 @@
                  <img class="pic1" src="pepsi.png" alt="image" width="200px" height="200px"/>
                  <p>Pepsi</p>
                  <p>Price: 15.00</p>
-                 <button class="b1" onclick="All('Pepsi', 15.00, this)">Add to Cart</button>
+                 <button class="b1" onclick="All('Pepsi', 15.00, this, 'text16', -1)">-</button>
+                 <span class="quantity" id="text16">0</span>
+                 <button class="b1" onclick="All('Pepsi', 15.00, this, 'text16', 1)">+</button>
                  <div><span class="stock">Stock: 50.00</span></div>
                </div> 
         
@@ -157,80 +184,157 @@
                  <img class="pic1" src="mountain dew.png" alt="image" width="200px" height="200px"/>
                  <p>Mountain Dew</p>
                  <p>Price: 15.00</p>
-                 <button class="b1" onclick="All('Mountain Dew', 15.00, this)">Add to Cart</button>
+                 <button class="b1" onclick="All('Mountain Dew', 15.00, this, 'text17', -1)">-</button>
+                 <span class="quantity" id="text17">0</span>
+                 <button class="b1" onclick="All('Mountain Dew', 15.00, this, 'text17', 1)">+</button>
                  <div><span class="stock">Stock: 50.00</span></div>
              </div> 
     </section>
+      
+    <div id="customAlert" class="custom">
+      <div class="modal">
+      <span class="close" onclick="Close()">&times;</span>
+      <p id="Message"></p>
+      </div>
+     </div>
+
+     <footer>
+        
+     </footer>
 
     <script>
-        let cart = [];
-        let total = 0.00;
-        let quanti = 0.00;
+     let cart = [];
 
-        function All(items, price, button) {
-    let stock = parseFloat(button.parentNode.querySelector('.stock').textContent.split(': ')[1]);
-    if (stock > 0) {
-        cart.push({ items: items, price: price });
-        total += price;
-        quanti++;
-        updateTotal();
-        stock--;
-        button.parentNode.querySelector('.stock').textContent = "Stock: " + stock.toFixed(2);
+function All(items, price, button, spanId, change) {
+console.log("Item name:", items); 
+console.log("Change:", change); 
+
+let stock = parseFloat(button.parentNode.querySelector('.stock').textContent.split(': ')[1]);
+let span = document.getElementById(spanId);
+let quantity = parseInt(span.innerText) + change;
+
+if (stock > 0 && quantity >= 0) {
+  let index = cart.findIndex(item => item.items === items);
+  console.log("Index:", index); 
+  console.log("Cart:", cart); 
+
+  if (index !== -1) {
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+          cart.splice(index, 1); 
+      }
+  } else if (quantity > 0) { 
+      cart.push({ items: items, price: price, quantity: quantity });
+  }
+  stock -= change;
+  button.parentNode.querySelector('.stock').textContent = "Stock: " + stock.toFixed(0);
+  span.innerText = quantity; 
+
+  localStorage.setItem(items, stock.toFixed(0));
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  document.addEventListener('DOMContentLoaded', function() {
+        const restockButton = document.querySelector('.restock-btn'); 
+
+        restockButton.addEventListener('click', function() {
+            const allContainers = document.querySelectorAll('.contai1');
+            allContainers.forEach(container => {
+                container.querySelector('.stock').textContent = "Stock: 50.00"; 
+                const itemName = container.querySelector('p').innerText.trim();
+                localStorage.setItem(itemName, "50.00"); 
+                
+            });
+            showAlert("Restocked successfully!");
+        });
+    });
+    
+} else {
+  showAlert("Sorry, this item is currently out of stock!");
+}
+}
+
+function redirectToReceipt() {
+    if (cart.length > 0) {
+        let cartData = encodeURIComponent(JSON.stringify(cart));
+        let url = "receipt.html?cart=" + cartData;
+        window.location.href = url;
     } else {
-        alert("Sorry, this item is out of stock.");
+        alert('Your cart is empty.'); // Show an alert if cart is empty
     }
 }
 
+function receipt() {
+    if (cart.length > 0) {
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save cart data to localStorage 
+        redirectToReceipt();
+    } else {
+        alert('Your cart is empty.'); // Show an alert if cart is empty
+    }
+}
 
-        function Restock() {
-            const allStockElements = document.querySelectorAll('.stock');
-            allStockElements.forEach(stockElement => {
-                stockElement.textContent = "Stock: 50.00";
-            });
-        }
+// Clear cart data from localStorage when returning to the main menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if there's cart data in localStorage
+    let storedCart = localStorage.getItem('cart');
+    if (storedCart !== null) {
 
-       function Clear() {
-             cart = [];
-             total = 0.00;
-             quanti = 0.00;
-             updateTotal();
-             Restock();
-       }
+    }
+});
 
-       function updateTotal() {
-            document.getElementById('total').innerHTML = total.toFixed(2);
-            document.getElementById('quan').innerHTML = quanti.toFixed(2);
-         }
+function showAlert(message) {
+document.getElementById('Message').innerText = message;
+document.getElementById('customAlert').style.display = "block";
+}
 
-       function receipt() {
-        let receipt = "Receipt:\n";
-        let Quanti = "Quantity:\n";
-        for (let items of cart) {
-           receipt += items.items + " - " + items.price.toFixed(2) + "\n";
-        }
-        receipt += "Total: " + total.toFixed(2);
-        Quanti += "items: " + quanti.toFixed(2);
-        alert(Quanti);
-        alert(receipt);
-       }
+function Close() {
+document.getElementById('customAlert').style.display = "none";
+}
 
-       document.addEventListener('DOMContentLoaded', function() {
-          const food = document.querySelector('.fd');
-          const pop = document.querySelector('section');
+document.addEventListener('DOMContentLoaded', function() {
 
-          food.addEventListener('click', ()=> {
-            pop.classList.toggle('up');
-       });
+const containers = document.querySelectorAll('.contai1');
+containers.forEach(container => {
+  const itemName = container.querySelector('p').innerText.trim();
+  const stock = localStorage.getItem(itemName);
+  if (stock !== null) {
+      container.querySelector('.stock').textContent = "Stock: " + stock;
+  }
+});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const restockButton = document.querySelector('.rt');
+
+    restockButton.addEventListener('click', function() {
+        const allContainers = document.querySelectorAll('.contai1');
+        allContainers.forEach(container => {
+            container.querySelector('.stock').textContent = "Stock: 50.00"; 
+            const itemName = container.querySelector('p').innerText.trim();
+            localStorage.setItem(itemName, "50.00"); 
+        });
+        showAlert("Restocked successfully!");
     });
+});
 
-    document.addEventListener('DOMContentLoaded', function() {
-     const drinks = document.querySelector('.DK');
-     const up = document.querySelector('.dr');
+document.addEventListener('DOMContentLoaded', function() {
+    let storedCart = localStorage.getItem('cart');
+    if (storedCart !== null) {
+        // If cart data is found, parse and use it
+        cart = JSON.parse(storedCart);
+        // Now you need to display the cart items on the page
+        displayCartItems(cart);
+    }
+});
 
-     drinks.addEventListener('click', ()=> {
-      up.classList.toggle('up');
-     });
-    });
+// Function to display cart items on the page
+function displayCartItems(cart) {
+    // Logic to display cart items on the page
+    // This can be similar to the logic you have in your `All` function
+    // But instead of modifying the cart, you'll just display the items
+    // You'll iterate through the `cart` array and update the DOM accordingly
+}
+
+
         </script>
 </body>
 </html>
