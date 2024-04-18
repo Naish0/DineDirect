@@ -33,20 +33,22 @@
         }
 
         button {
-            background-color: #ffffff;
-            color: black;
+            background-color: #f1c232ff;
+            color: white;
             font-size: 15px;
-            width: 100px;
-            height: 50px;
-            border: 2px solid #f9f9f9;
+            padding: 15px 20px;
+            border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition-duration: .2s;
+            transition-duration: .3s;
+            font-family: sans-serif;
+            font-size: 15px;
+            font-weight: 550;
         }
 
         button:hover {
-            background-color: #f1c232ff;
-            color: white;
+            background-color: #f9f9f9;
+            color: black;
         }
 
         .alert {
@@ -131,37 +133,41 @@
 
     <script>
 function purchase() {
-        document.getElementById('Purchasebt').disabled = true;
-        document.getElementById('customAlert').style.display = 'block';
-       // Get cart items from local storage
-            const cartData = localStorage.getItem('cart');
-            if (cartData) {
-                // Pass cart items to final receipt page
-                localStorage.setItem('final_receipt', cartData);
-            }
-            
-            // Clear the cart (local storage)
-            localStorage.removeItem('cart');
-            
-            // Redirect to final receipt page
-            window.location.href = 'final_receipt.html';
-        }
+    // Disable the purchase button
+    document.getElementById('Purchasebt').disabled = true;
 
-        function hideAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-        }
+    // Get cart items from local storage
+    const cartData = localStorage.getItem('cart');
 
-    function hideAlert() {
-        document.getElementById('customAlert').style.display = 'none';
+    // Check if cart is empty
+    if (!cartData || JSON.parse(cartData).length === 0) {
+        alert('Your cart is empty!');
+        // Enable the purchase button again
+        document.getElementById('Purchasebt').disabled = false;
+        return; // Stop further execution
     }
-  function removeItem(index) {
+
+    // Display the purchase alert
+    document.getElementById('customAlert').style.display = 'block';
+
+    // Pass cart items to final receipt page
+    localStorage.setItem('final_receipt', cartData);
+
+    // Clear the cart (local storage)
+    localStorage.removeItem('cart');
+    
+    // Redirect to final receipt page
+    window.location.href = 'final_receipt.html';
+}
+
+    function removeItem(index) {
     const cartData = localStorage.getItem('cart');
     if (cartData) {
         let cart = JSON.parse(cartData);
         let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
         let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
         stock += removedItem.quantity; // Add the removed item's quantity back to stock
-        localStorage.setItem(removedItem.items, stock.toFixed(2)); // Update stock in local storage
+        localStorage.setItem(removedItem.items, stock.toFixed(0)); // Update stock in local storage
         localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
         location.reload(); // Reload the page to reflect the changes
     }
@@ -185,6 +191,7 @@ function purchase() {
                 document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
             }
         };
+
     </script>
 </body>
 </html>
