@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: rgb(212, 211, 209);
+    background-color: #ffeae0;
     justify-content: center;
     align-items: center;
     background-position: center;
@@ -23,6 +23,10 @@ header {
     padding: 5px 50px;
     display: flex;
     align-items: center;
+}
+
+header h1 b {
+    color: white;
 }
 
 label {
@@ -48,7 +52,7 @@ header h1 {
 
 section {
     position: relative;
-    background-color: #686464;
+    background-color: #c7c7c7;
     border: solid 2px #f9f9f9;
     border-radius: 10px;
     width: 90%;
@@ -63,7 +67,7 @@ section {
 
 section h1 {
     position: relative;
-    color: #fff;
+    color: #1b281b;
     font-weight: 500;
     text-align: center;
     font-size: 1.5em;
@@ -180,5 +184,40 @@ button:hover {
 
 .quantity {
     color: #000000;
+}
+
+.column {
+    background-color: #fff;
+    padding: 20px 30px;
+}
+
+.sign {
+    display: flex;
+    list-style: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.column ul li {
+    margin-left: 30px;
+}
+
+.sign a:after {
+     content: '';
+     position: relative;
+     width: 50%;
+     height: 3px;
+     background-color: #f1c232ff;
+     display: flex;
+     margin-left: 10px;
 }
 
