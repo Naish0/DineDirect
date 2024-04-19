@@ -78,6 +78,55 @@
            float: right;
            cursor: pointer;
        }
+
+       @media screen and (max-width: 600px) {
+           header {
+            padding: 10px;
+           }
+
+           header h1 {
+            font-size: 8px;
+           }
+
+           section {
+           margin: 10px auto;
+           width: 50%;
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+           gap: 10px;
+       }
+
+       section .contai1 {
+           padding: 15px;
+           font-size: 8px;
+           text-align: center;
+       }
+       input {
+        font-size: 6px;
+        margin-bottom: 4px;
+       }
+
+       section .restock-btn {
+        width: auto;
+        height: 10px;
+        font-size: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+       }
+
+       section span {
+        font-size: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       }
+
+       footer {
+        font-size: 6px;
+        padding: 5px;
+       }
+       }
    </style>
 </head>
 <body>
