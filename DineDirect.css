@@ -186,38 +186,95 @@ button:hover {
     color: #000000;
 }
 
-.column {
-    background-color: #fff;
-    padding: 20px 30px;
-}
 
-.sign {
-    display: flex;
-    list-style: none;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
+@media screen and (max-width: 600px) {
+    header {
+        position: relative;
+        width: 100%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+    }
 
-.sign a {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-family: sans-serif;
-    font-weight: 700;
-}
+    header .logo {
+        border-radius: 100%;
+        margin-left: 5px;
+        width: 50px;
+    }
 
-.column ul li {
-    margin-left: 30px;
-}
+    header h1 {
+        position: absolute;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        left: 20%;
+        color: #1b281b;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 500;
+        user-select: none;
+    }
 
-.sign a:after {
-     content: '';
-     position: relative;
-     width: 50%;
-     height: 3px;
-     background-color: #f1c232ff;
-     display: flex;
-     margin-left: 10px;
-}
+    header .rc {
+        position: absolute;
+        float: right;
+        left: 85%;
+        width: 50px;
+        font-size: 8px;
+        font-weight: 500;
+        height: 18px;
+    }
 
+    section {
+        display: inline-block;
+        width: 90%;
+        height: 50%;
+        margin-left: 1px;
+        margin-top: 10px;
+    }
+
+    section h1 {
+        font-weight: 500;
+        text-align: center;
+        font-size: 10px;
+        margin-top: 15px;
+    }
+    
+    section img {
+        width: 80px;
+        height: auto;
+        border-radius: 2px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .contai1 {
+        display: inline-block;
+        margin: 13px;
+        width: 81px;
+        height: auto;
+        text-align: center;
+        border: 1px solid #f9f9f9;
+        border-radius: 6px;
+    }
+
+    .contai1:hover {
+         border: 1px solid #f1c232ff;
+    }
+
+    section p {
+        font-size: 6px;
+    }
+
+    section span {
+        font-size: 6px;
+    }
+
+    button {
+        font-size: 6px;
+        font-weight: 500;
+        width: 20px;
+        height: auto;
+        cursor: pointer;
+        border: solid 1px #fff;
+        border-radius: 4px;
+    }
+}
