@@ -2,9 +2,321 @@
 <head>
    <title>DineDirect</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="design.css">
 </head>
 <body>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffeae0;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+header {
+    position: relative;
+    background-color: #f1c232ff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 50px;
+    display: flex;
+    align-items: center;
+}
+
+header h1 b {
+    color: white;
+}
+
+label {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+span {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+header h1 {
+    position: absolute;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 15%;
+    color: #1b281b;
+    font-size: 3em;
+    text-align: center;
+    font-weight: 500;
+    user-select: none;
+}
+
+section {
+    position: relative;
+    background-color: #c7c7c7;
+    border: solid 2px #f9f9f9;
+    border-radius: 10px;
+    width: 90%;
+    height: 50%;
+    margin-left: 1px;
+    margin-top: 10px;
+}
+
+section {
+    left: 5%;
+}
+
+section h1 {
+    position: relative;
+    color: #1b281b;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+footer {
+    background-color: #f1c232ff;
+    position: absolute;
+    width: 100%;
+    padding: 40px 50px;
+}
+
+.contai1 {
+    display: inline-block;
+    background-color: rgba(215, 229, 231, 0.507);
+    margin: 13px;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #f9f9f9;
+    text-align: center;
+}
+
+.contai1:hover {
+    border: 2px solid #f1c232ff;
+}
+
+.pic1 {
+    border-radius: 10px;
+}
+
+button {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    border: solid 2px #fff;
+    border-radius: 7px;
+    transition-duration: .2s;
+}
+
+button:hover {
+    background-color: #f1c232ff;
+    color: white    ;
+}
+
+.custom {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rbga(0, 0, 0, 0.4);
+}
+
+.modal {
+    background-color: #f9f9f9;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+    width: 80%;
+    max-width: 20%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #1b281b;
+    text-decoration: none;
+}
+
+.rc {   
+    position: absolute;
+    float: right;
+    left: 85%;
+    width: 92px;
+}
+
+.fd {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.DK {
+    width: 100px;
+}
+
+.logo {
+     border-radius: 100%;
+     margin-left: 5px;
+     width: 150px;
+}
+
+.stock {
+    color: #000000;
+}
+
+.quantity {
+    color: #000000;
+}
+
+.coll {
+    position: relative;
+    background-color: #c7c7c7;
+    padding: 10px 20px;
+}
+
+.bth {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+
+.bth ul a {
+    margin-right: 30px;
+}
+
+.bth a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+.bth a:hover {
+    color: white;
+}
+@media screen and (max-width: 600px) {
+    header {
+        position: relative;
+        width: 100%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo {
+        border-radius: 100%;
+        margin-left: 5px;
+        width: 50px;
+    }
+
+    header h1 {
+        position: absolute;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        left: 20%;
+        color: #1b281b;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 500;
+        user-select: none;
+    }
+
+    header .rc {
+        position: absolute;
+        float: right;
+        left: 85%;
+        width: 50px;
+        font-size: 8px;
+        font-weight: 500;
+        height: 18px;
+    }
+
+    section {
+        display: inline-block;
+        width: 90%;
+        height: 50%;
+        margin-left: 1px;
+        margin-top: 10px;
+    }
+
+    section h1 {
+        font-weight: 500;
+        text-align: center;
+        font-size: 10px;
+        margin-top: 15px;
+    }
+    
+    section img {
+        width: 80px;
+        height: auto;
+        border-radius: 2px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .contai1 {
+        display: inline-block;
+        margin: 13px;
+        width: 81px;
+        height: auto;
+        text-align: center;
+        border: 1px solid #f9f9f9;
+        border-radius: 6px;
+    }
+
+    .contai1:hover {
+         border: 1px solid #f1c232ff;
+    }
+
+    section p {
+        font-size: 6px;
+    }
+
+    section span {
+        font-size: 6px;
+    }
+
+    button {
+        font-size: 6px;
+        font-weight: 500;
+        width: 20px;
+        height: auto;
+        cursor: pointer;
+        border: solid 1px #fff;
+        border-radius: 4px;
+    }
+}
+</style>
+
     <header>
         <img class="logo" src="logo.png" alt="logo">
         <h1>Welcome to <b>DineDirect!</b></h1>
