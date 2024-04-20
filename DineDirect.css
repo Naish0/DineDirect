@@ -186,7 +186,36 @@ button:hover {
     color: #000000;
 }
 
+.coll {
+    position: relative;
+    background-color: #c7c7c7;
+    padding: 10px 20px;
+}
 
+.bth {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+
+.bth ul a {
+    margin-right: 30px;
+}
+
+.bth a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+
+.bth a:hover {
+    color: white;
+}
 @media screen and (max-width: 600px) {
     header {
         position: relative;
