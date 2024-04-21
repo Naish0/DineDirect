@@ -152,11 +152,6 @@
         <h2>Total:</h2>
     </div>
 
-    <div class="alert" id="customAlert">
-        <p>Thank you for your purchase!</p>
-        <button onclick="hideAlert()">Close</button>
-    </div>
-
     <footer>
 
     </footer>
@@ -177,8 +172,6 @@ function purchase() {
         return; // Stop further execution
     }
 
-    // Display the purchase alert
-    document.getElementById('customAlert').style.display = 'block';
 
     // Pass cart items to final receipt page
     localStorage.setItem('final_receipt', cartData);
