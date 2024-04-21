@@ -71,6 +71,7 @@
 <body>
     <div class="receipt">
         <div class="receipt-header">
+            <span class="number" id="Number">0</span>
             <h2>Receipt</h2>
             <p>Thank you for your purchase!</p>
         </div>
@@ -116,6 +117,20 @@
                 document.getElementById('totalAmount').textContent = total.toFixed(2);
             }
         };
+
+       function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+       }
+       return array;
+    }
+
+    const numbers = [1, 2, 3, 4, 5];
+    const shuffledNumbers = shuffleArray(numbers);
+
+    document.getElementById('Number').textContent = shuffledNumbers.join('');
+
     </script>
 </body>
 </html>
