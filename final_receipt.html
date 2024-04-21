@@ -115,6 +115,10 @@
                 }
                 document.querySelector('.receipt-item').innerHTML = itemsHTML;
                 document.getElementById('totalAmount').textContent = total.toFixed(2);
+                
+                const numbers = [1, 2, 3, 4, 5];
+                const shuffledNumbers = shuffleArray(numbers);
+                document.getElementById('Number').textContent = shuffledNumbers.join('');
             }
         };
 
@@ -125,11 +129,6 @@
        }
        return array;
     }
-
-    const numbers = [1, 2, 3, 4, 5];
-    const shuffledNumbers = shuffleArray(numbers);
-
-    document.getElementById('Number').textContent = shuffledNumbers.join('');
 
     </script>
 </body>
