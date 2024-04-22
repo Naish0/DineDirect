@@ -288,10 +288,17 @@
                 // Get the existing stock from local storage or default to 0
                 let stock = parseFloat(localStorage.getItem(itemName)) || 0;
                 // Update the stock by adding the restock quantity
+                let totalstock = stock + restockQuantity;
+                if (totalstock <= 150) {
+
                 stock += restockQuantity;
                 // Store updated stock in local storage
                 localStorage.setItem(itemName, stock.toString());
                 showAlert(`${itemName} restocked successfully! Current stock: ${stock}`);
+
+                } else {
+                    showAlert("Cannot restock. Stock limit (150 units) reached.")
+                }
             } else {
                 showAlert("Please enter a valid restock quantity.");
             }
