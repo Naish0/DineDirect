@@ -46,6 +46,8 @@
      .column h1 {
         text-align: center;
      }
+
+
 </style>
 <body>
     <header>
@@ -71,17 +73,24 @@
     </footer>
 
     <script>
-   window.onload = function () {
+  window.onload = function () {
+    displayNumbers();
+};
+
+function displayNumbers() {
     const numberToProcess = localStorage.getItem('numberToProcess');
     if (numberToProcess) {
-        document.getElementById('process').innerHTML = "<p>" + numberToProcess + "</p>";
+        const processDiv = document.getElementById('process');
+        const numbers = numberToProcess.split(',');
+        processDiv.innerHTML = numbers.map(number => `<p>${number}</p>`).join('');
     }
 
     const numberToClaim = localStorage.getItem('numberToClaim');
     if (numberToClaim) {
-        document.getElementById('claim').innerHTML = "<p>" + numberToClaim + "</p>";
+        const claimDiv = document.getElementById('claim');
+        claimDiv.innerHTML = numberToClaim.split(',').map(number => `<p>${number}</p>`).join('');
     }
-};
+}
     </script>
 </body>
 </html>

@@ -61,14 +61,27 @@
             cursor: pointer;
         }
 
-        #process, #claim {
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            min-height: 50px; /* Ensures the containers have a minimum height */
-        }
-        
+        #process,
+    #claim {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        min-height: 50px; /* Ensures the containers have a minimum height */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .number-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .number-container button {
+        margin-left: 10px;
+    }
 </style>
 <body>
     <header>
@@ -80,27 +93,30 @@
     <button onclick="transferNumberToClaim()">Claim Number</button>
 
     <div id="process"></div>
-    <button onclick="removeNumberFromProcess()">Remove one from Process</button> <!-- Updated button text -->
+    
 
     <div id="claim"></div>
-    <button onclick="removeNumberFromClaim()">Remove from Claim</button>
+   
 
     <footer></footer>
 
     <script>
-        window.onload = function () {
+      window.onload = function () {
             displayNumbers();
         };
 
         function displayNumbers() {
             const numberToProcess = localStorage.getItem('numberToProcess');
             if (numberToProcess) {
-                document.getElementById('process').innerHTML = numberToProcess;
+                const processDiv = document.getElementById('process');
+                const numbers = numberToProcess.split(',');
+                processDiv.innerHTML = numbers.map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromProcess('${number}')">Remove</button></div>`).join('');
             }
 
             const numberToClaim = localStorage.getItem('numberToClaim');
             if (numberToClaim) {
-                document.getElementById('claim').innerHTML = numberToClaim;
+                const claimDiv = document.getElementById('claim');
+                claimDiv.innerHTML = numberToClaim.split(',').map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromClaim('${number}')">Remove</button></div>`).join('');
             }
         }
 
@@ -108,7 +124,7 @@
             var numberInput = document.getElementById("numberInput").value.trim();
             if (numberInput !== "" && /^\d{5}$/.test(numberInput)) {
                 var currentProcess = localStorage.getItem('numberToProcess') || '';
-                localStorage.setItem('numberToProcess', currentProcess + "<p>" + numberInput + "</p>");
+                localStorage.setItem('numberToProcess', currentProcess + (currentProcess ? ',' : '') + numberInput);
                 displayNumbers();
             } else {
                 alert("Please enter a 5-digit number.");
@@ -119,48 +135,33 @@
             var numberInput = document.getElementById("numberInput").value.trim();
             if (numberInput !== "" && /^\d{5}$/.test(numberInput)) {
                 var currentClaim = localStorage.getItem('numberToClaim') || '';
-                localStorage.setItem('numberToClaim', currentClaim + "<p>" + numberInput + "</p>");
+                localStorage.setItem('numberToClaim', currentClaim + (currentClaim ? ',' : '') + numberInput);
                 displayNumbers();
             } else {
                 alert("Please enter a 5-digit number.");
             }
         }
 
-        function removeNumberFromProcess() {
-            const numberToProcess = localStorage.getItem('numberToProcess');
-            if (numberToProcess) {
-                const processDiv = document.getElementById('process');
-                const numbers = processDiv.getElementsByTagName('p');
-                if (numbers.length > 0) {
-                    const lastNumber = numbers[numbers.length - 1].innerText.trim();
-                    processDiv.removeChild(numbers[numbers.length - 1]);
-                    removeNumber('process', lastNumber);
-                    // Transfer removed number to claim section
-                    var currentClaim = localStorage.getItem('numberToClaim') || '';
-                    localStorage.setItem('numberToClaim', currentClaim + "<p>" + lastNumber + "</p>");
-                    displayNumbers();
-                }
-            }
+        function removeNumberFromProcess(number) {
+            var numbers = localStorage.getItem('numberToProcess').split(',');
+            numbers = numbers.filter(n => n !== number);
+            localStorage.setItem('numberToProcess', numbers.join(','));
+            var currentClaim = localStorage.getItem('numberToClaim') || '';
+            localStorage.setItem('numberToClaim', currentClaim + (currentClaim ? ',' : '') + number);
+            displayNumbers();
+        }
+
+        function removeNumberFromClaim(number) {
+            var numbers = localStorage.getItem('numberToClaim').split(',');
+            numbers = numbers.filter(n => n !== number);
+            localStorage.setItem('numberToClaim', numbers.join(','));
+            displayNumbers();
         }
 
         function limitNumberLength(input) {
             if (input.value.length > 5) {
                 input.value = input.value.slice(0, 5); // Limit input to 5 characters
             }
-        }
-
-        function removeNumber(type, number) {
-            const numbers = localStorage.getItem('numberTo' + type.charAt(0).toUpperCase() + type.slice(1));
-            if (numbers) {
-                const updatedNumbers = numbers.replace("<p>" + number + "</p>", "");
-                localStorage.setItem('numberTo' + type.charAt(0).toUpperCase() + type.slice(1), updatedNumbers);
-                displayNumbers();
-            }
-        }
-
-        function removeNumberFromClaim() {
-            localStorage.removeItem('numberToClaim');
-            document.getElementById('claim').innerHTML = '';
         }
     </script>
 </body>
