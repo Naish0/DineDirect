@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineDirect!</title>
+    <link rel="stylesheet" href="Enter.css">
+</head>
+<body>
+
+    <header>
+      <img class="Logo" src="logo.png" alt="logo">
+      <h1 class="logo">Welcome to <b>DineDirect</b></h1>
+    </header>
+
+     <div>
+        <h1 class="font">Welcome To Our Store!</h1>
+     </div>
+     <div>
+        <button class="b1" onclick="document.location='DineDirect.html'">Start</button>
+     </div>
+    
+     <footer>
+      
+     </footer>
+     <script>
+      document.addEventListener('DOMContentLoaded', function() {
+         const pop = document.querySelector('.sup');
+         const up = document.querySelector('.Box');
+
+         pop.addEventListener('click', ()=> {
+         up.classList.toggle('pop');
+         })
+      })
+     </script>
+      
+</body>
+</html>

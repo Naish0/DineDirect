@@ -2,53 +2,350 @@
 <head>
    <title>DineDirect</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="DineDirect.css">
 </head>
 <body>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+header {
+    position: relative;
+    background-color: rgb(34, 138, 223);
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 50px;
+    display: flex;
+    align-items: center;
+}
+
+header h1 b {
+    color: white;
+}
+
+label {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+span {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+header h1 {
+    position: absolute;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 15%;
+    color: #1b281b;
+    font-size: 3em;
+    text-align: center;
+    font-weight: 500;
+    user-select: none;
+}
+
+section {
+    position: relative;
+    background-color: #d3e5f3;
+    border: solid 2px #22556d;
+    border-radius: 10px;
+    width: 89%;
+    margin-left: 6%;
+    height: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+section {
+    left: 5%;
+}
+
+section h1 {
+    position: relative;
+    color: #1b281b;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+footer {
+    background-color: rgb(11, 112, 196);
+    position: absolute;
+    width: 100%;
+    padding: 40px 50px;
+}
+
+footer #cancel {
+    float: right;
+    width: 100px;
+    height: 40px;
+}
+
+.contai1 {
+    display: inline-block;
+    background-color: rgba(40, 128, 187, 0.507);
+    margin: 30px;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid #f9f9f9;
+    text-align: center;
+}
+
+.contai1:hover {
+    border: 2px solid #22556d;
+}
+
+.pic1 {
+    border-radius: 10px;
+}
+
+button {
+    background-color: #d3e5f3;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    border: solid 2px #fff;
+    border-radius: 7px;
+    transition-duration: .2s;
+}
+
+button:hover {
+    background-color: rgb(11, 112, 196);
+    color: white    ;
+}
+
+.custom {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rbga(0, 0, 0, 0.4);
+}
+
+.modal {
+    background-color: #f9f9f9;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #888;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .4);
+    width: 80%;
+    max-width: 20%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #1b281b;
+    text-decoration: none;
+}
+
+.rc {   
+    position: absolute;
+    float: right;
+    left: 85%;
+    width: 92px;
+}
+
+.fd {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.DK {
+    width: 100px;
+}
+
+.logo {
+     border-radius: 100%;
+     margin-left: 5px;
+     width: 150px;
+}
+
+.stock {
+    color: #000000;
+}
+
+.quantity {
+    color: #000000;
+}
+
+.bth {
+    position: absolute;
+    top: 30%;
+    right: 90%;
+}
+
+.up button {
+    width: 150px;
+    height: 150px;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.cen button {
+    width: 150px;
+    height: 150px;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.down button {
+    width: 150px;
+    font-size: 28px;
+    font-weight: 600;
+    height: 150px;
+}
+@media screen and (max-width: 600px) {
+    header {
+        position: relative;
+        width: 100%;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    header .logo {
+        border-radius: 100%;
+        margin-left: 5px;
+        width: 50px;
+    }
+
+    header h1 {
+        position: absolute;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        left: 20%;
+        color: #1b281b;
+        font-size: 14px;
+        text-align: center;
+        font-weight: 500;
+        user-select: none;
+    }
+
+    header .rc {
+        position: absolute;
+        float: right;
+        left: 85%;
+        width: 50px;
+        font-size: 8px;
+        font-weight: 500;
+        height: 18px;
+    }
+
+    section {
+        display: inline-block;
+        width: 90%;
+        height: 50%;
+        margin-left: 1px;
+        margin-top: 10px;
+    }
+
+    section h1 {
+        font-weight: 500;
+        text-align: center;
+        font-size: 10px;
+        margin-top: 15px;
+    }
+    
+    section img {
+        width: 80px;
+        height: auto;
+        border-radius: 2px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .contai1 {
+        display: inline-block;
+        margin: 13px;
+        width: 81px;
+        height: auto;
+        text-align: center;
+        border: 1px solid #f9f9f9;
+        border-radius: 6px;
+    }
+
+    .contai1:hover {
+         border: 1px solid #f1c232ff;
+    }
+
+    section p {
+        font-size: 6px;
+    }
+
+    section span {
+        font-size: 6px;
+    }
+
+    button {
+        font-size: 6px;
+        font-weight: 500;
+        width: 20px;
+        height: auto;
+        cursor: pointer;
+        border: solid 1px #fff;
+        border-radius: 4px;
+    }
+}
+</style>
+
     <header>
         <img class="logo" src="logo.png" alt="logo">
         <h1>Welcome to <b>DineDirect!</b></h1>
         <nav class="Head">
-          <button class="rc" onclick="receipt()">Go To Cart</button>
-       </nav>
-       
+          <button class="rc" onclick="receipt()">Go to Cart</button>
+        </nav>
     </header>
-  
+
     <div class="col">
-       <div class="bth">
-        <div class="up">
-            <button onclick="document.location.href='Food.html'">Food</button>
-        </div>
-        <div class="cen">
-            <button onclick="document.location.href='Snacks.html'">Snacks</button>
-        </div>
-        <div class="down">
-            <button onclick="document.location.href='Drinks.html'">Drinks</button>
-        </div>
-       </div>
-    </div>
-   
-    <section>
-          <div><h1>Food</h1></div>
-          <div class="contai1" data-stock="50.00">
-            <img class="pic1"src="hot.jpg" alt="image" width="200px" height="200px"/>
-            <p>Hot Dog, Egg with Rice</p>
-            <p>Price: 30.00</p>
-            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', -1)">-</button>
-            <span class="quantity" id="text1">0</span>
-            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', 1)">+</button>
-            <div><span class="stock">Stock: 50</span></div>
+        <div class="bth">
+         <div class="up">
+             <button onclick="document.location.href='Food.html'">Food</button>
          </div>
-         
-            <div class="contai1" data-stock="50.00">
-               <img class="pic1"src="egg.jpeg" alt="image" width="200px" height="200px"/>
-               <p>Egg with Rice</p>
-               <p>Price: 25.00</p>
-               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', -1)">-</button>
-               <span class="quantity" id="text2">0</span>
-               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', 1)">+</button>
-               <div><span class="stock">Stock: 50</span></div>
-            </div>
+         <div class="cen">
+             <button onclick="document.location.href='Snacks.html'">Snacks</button>
+         </div>
+         <div class="down">
+             <button onclick="document.location.href='Drinks.html'">Drinks</button>
+         </div>
+        </div>
+     </div>
+
+    <section>
+          <div class="food"><h1>Snacks</h1></div>
             
             <div class="contai1">
                 <img class="pic1"src="footlong.png" alt="image" width="200px" height="200px"/>
@@ -120,6 +417,7 @@
                 <div><span class="stock">Stock: 50</span></div>
              </div>
     </section>
+            
       
     <div id="customAlert" class="custom">
       <div class="modal">
@@ -209,7 +507,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (storedCart !== null) {
 
     }
-}); 
+});
 
 function showAlert(message) {
 document.getElementById('Message').innerText = message;
@@ -230,6 +528,20 @@ containers.forEach(container => {
       container.querySelector('.stock').textContent = "Stock: " + stock;
   }
 });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const restockButton = document.querySelector('.rt');
+
+    restockButton.addEventListener('click', function() {
+        const allContainers = document.querySelectorAll('.contai1');
+        allContainers.forEach(container => {
+            container.querySelector('.stock').textContent = "Stock: 50.00"; 
+            const itemName = container.querySelector('p').innerText.trim();
+            localStorage.setItem(itemName, "50.00"); 
+        });
+        showAlert("Restocked successfully!");
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <title>Claiming</title>
+</head>
+<style>
+     * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+     }
+
+     body {
+        background-color: white;
+        min-height: 100vh;
+     }
+
+     header {
+        position: relative;
+        color: white;
+        background-color: rgb(11, 112, 196);
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+     }
+
+     footer {
+        position: absolute;
+        background-color: rgb(11, 112, 196);
+        bottom: 0;
+        width: 100%;
+        padding: 30px;
+     }
+
+     .column {
+        float: left;
+        width: 50%;
+        color: black;
+        box-sizing: border-box;
+        padding: 10px;
+        margin: 0;
+        border: 2px solid black;
+        margin-top: 20px;
+     }
+
+     .column h1 {
+        text-align: center;
+     }
+</style>
+<body>
+    <header>
+        <h1>Claiming Area</h1>
+    </header>
+
+    <div class="column">
+        <h1>Processing</h1>
+        <div id="process">
+
+        </div>
+    </div>
+
+    <div class="column">
+        <h1>Claiming</h1>
+        <div id="claim">
+
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script>
+   window.onload = function () {
+    const numberToProcess = localStorage.getItem('numberToProcess');
+    if (numberToProcess) {
+        document.getElementById('process').innerHTML = "<p>" + numberToProcess + "</p>";
+    }
+
+    const numberToClaim = localStorage.getItem('numberToClaim');
+    if (numberToClaim) {
+        document.getElementById('claim').innerHTML = "<p>" + numberToClaim + "</p>";
+    }
+};
+    </script>
+</body>
+</html>

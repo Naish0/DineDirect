@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+    <title>Code</title>
+</head>
+<style>
+* {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+     }
+
+     body {
+        background-color: white;
+        min-height: 100vh;
+     }
+
+     header {
+        position: relative;
+        color: white;
+        background-color: rgb(11, 112, 196);
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+     }
+
+     footer {
+        position: absolute;
+        background-color: rgb(11, 112, 196);
+        bottom: 0;
+        width: 100%;
+        padding: 30px;
+     }
+
+     .column {
+        position: relative;
+        display: flex;
+        align-items: center;
+     }
+
+     .column {
+            display: flex;
+            align-items: center;
+        }
+
+        #numberInput {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 150px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(11, 112, 196);
+            color: white;
+            cursor: pointer;
+        }
+
+        #process, #claim {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 50px; /* Ensures the containers have a minimum height */
+        }
+</style>
+<body>
+    <header>
+     <h1>Number Code in receipt</h1>
+    </header>
+
+    <input type="number" id="numberInput" placeholder="Enter Number" oninput="limitNumberLength(this)" min="0" max="99999">
+<button onclick="transferNumberToProcess()">Process Number</button>
+<button onclick="transferNumberToClaim()">Claim Number</button>
+
+
+<div id="process"></div>
+<button onclick="removeNumberFromProcess()">Remove from Process</button>
+
+<div id="claim"></div>
+<button onclick="removeNumberFromClaim()">Remove from Claim</button>
+
+    <footer>
+
+    </footer>
+
+    <script>
+      window.onload = function () {
+    displayNumbers();
+};
+
+function displayNumbers() {
+    const numberToProcess = localStorage.getItem('numberToProcess');
+    if (numberToProcess) {
+        document.getElementById('process').innerHTML = "<p>" + numberToProcess + "</p>";
+    }
+
+    const numberToClaim = localStorage.getItem('numberToClaim');
+    if (numberToClaim) {
+        document.getElementById('claim').innerHTML = "<p>" + numberToClaim + "</p>";
+    }
+}
+
+function transferNumberToProcess() {
+    var numberInput = document.getElementById("numberInput").value.trim();
+    if (numberInput !== "" && /^\d{5}$/.test(numberInput)) {
+        var currentProcess = localStorage.getItem('numberToProcess') || '';
+        localStorage.setItem('numberToProcess', currentProcess + "<p>" + numberInput + "</p>");
+        displayNumbers();
+    } else {
+        alert("Please enter a 5-digit number.");
+    }
+}
+
+function transferNumberToClaim() {
+    var numberInput = document.getElementById("numberInput").value.trim();
+    if (numberInput !== "" && /^\d{5}$/.test(numberInput)) {
+        var currentClaim = localStorage.getItem('numberToClaim') || '';
+        localStorage.setItem('numberToClaim', currentClaim + "<p>" + numberInput + "</p>");
+        displayNumbers();
+    } else {
+        alert("Please enter a 5-digit number.");
+    }
+}
+
+function removeNumberFromProcess() {
+    const numberToProcess = localStorage.getItem('numberToProcess');
+    if (numberToProcess) {
+        const currentClaim = localStorage.getItem('numberToClaim') || '';
+        localStorage.setItem('numberToClaim', currentClaim + numberToProcess);
+        localStorage.removeItem('numberToProcess');
+        displayNumbers();
+    }
+}
+
+function limitNumberLength(input) {
+    if (input.value.length > 5) {
+        input.value = input.value.slice(0, 5); // Limit input to 5 characters
+    }
+}
+
+
+function removeNumberFromClaim() {
+    localStorage.removeItem('numberToClaim');
+    document.getElementById('claim').innerHTML = '';
+}
+
+function removeNumber(type, number) {
+            const numbers = localStorage.getItem('numberTo' + type.charAt(0).toUpperCase() + type.slice(1));
+            if (numbers) {
+                const updatedNumbers = numbers.replace("<p>" + number + "</p>", "");
+                localStorage.setItem('numberTo' + type.charAt(0).toUpperCase() + type.slice(1), updatedNumbers);
+                displayNumbers();
+            }
+        }
+
+
+
+    </script>
+</body>
+</html>
