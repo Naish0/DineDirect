@@ -25,6 +25,11 @@
             margin-bottom: 20px;
         }
 
+        .receipt-header span {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
         .receipt-items {
             border-top: 1px solid #ccc;
             border-bottom: 1px solid #ccc;
@@ -119,6 +124,10 @@
                 const numbers = [1, 2, 3, 4, 5];
                 const shuffledNumbers = shuffleArray(numbers);
                 document.getElementById('Number').textContent = shuffledNumbers.join('');
+
+                const receiptClone = document.querySelector('.receipt').cloneNode(true);
+                receiptClone.classList.add('receipt-clone');
+                document.querySelector('.receipt').insertAdjacentElement('afterend', receiptClone);
             }
         };
 

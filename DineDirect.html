@@ -13,14 +13,19 @@
        </nav>
        
     </header>
-
-    <div class="coll">
-        <div class="bth">
-            <ul>
-                <a href="Food.html">Food</a>
-                <a href="Drinks.html">Drinks</a>
-            </ul>
+  
+    <div class="col">
+       <div class="bth">
+        <div class="up">
+            <button onclick="document.location.href='Food.html'">Food</button>
         </div>
+        <div class="cen">
+            <button onclick="document.location.href=''">Snacks</button>
+        </div>
+        <div class="down">
+            <button onclick="document.location.href='Drinks.html'">Drinks</button>
+        </div>
+       </div>
     </div>
    
     <section>
@@ -124,7 +129,7 @@
      </div>
 
      <footer>
-        
+        <button id="cancel" onclick="Cancel()">Cancel Order</button>
      </footer>
 
     <script>
@@ -243,6 +248,28 @@ function displayCartItems(cart) {
     // This can be similar to the logic you have in your `All` function
     // But instead of modifying the cart, you'll just display the items
     // You'll iterate through the `cart` array and update the DOM accordingly
+}
+
+function Cancel() {
+    document.getElementById('cancel').disabled = true;
+    
+
+// Get cart items from local storage
+const cartData = localStorage.getItem('cart');
+if (cartData) {
+        let cart = JSON.parse(cartData);
+
+        // Iterate through each item in the cart
+        cart.forEach(item => {
+            let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
+            stock += item.quantity; // Add the item's quantity back to stock
+            localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+        });
+    }
+    localStorage.removeItem('cart');
+
+            // Redirect to final receipt page
+            window.location.href = 'DineDirect.html';
 }
         </script>
 </body>

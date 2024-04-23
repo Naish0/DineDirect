@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: #ffeae0;
+            background-color: white;
             min-height: 100vh;
             color: white;
         }
@@ -32,9 +32,25 @@
             border: 2px solid black; 
         }
 
+        .column #receiptItems {
+            float: right;
+        }
+
+        #quantity p {
+            margin: 26px;
+        }
+
+        #price p {
+            margin: 26px;
+        }
+
+        #total {
+            float: right;
+        }
+
         button {
-            background-color: #f1c232ff;
-            color: white;
+            background-color:#d3e5f3;
+            color: black;
             font-size: 15px;
             padding: 15px 20px;
             border: none;
@@ -47,7 +63,7 @@
         }
 
         button:hover {
-            background-color: #f9f9f9;
+            background-color: rgb(11, 112, 196);
             color: black;
         }
 
@@ -70,7 +86,7 @@
 
         .alert button {
             margin-top: 10px;
-            background-color: #ffffff;
+            background-color: rgb(11, 112, 196);
             color: black;
             border: 2px solid #f9f9f9;
             border-radius: 4px;
@@ -83,10 +99,10 @@
         }
 
         header {
-            background-color: #f1c232ff;
+            background-color: rgb(34, 138, 223);
             padding: 20px 50px;
         }   
-
+        
         .bt {
             position: absolute;
             float: right;
@@ -94,12 +110,18 @@
         }
 
         footer {
-            background-color: #f1c232ff;
-            position: fixed;
-            top: 95%;
-            padding: 30px 50px;
+            background-color: rgb(34, 138, 223);
+            position: absolute;
+            top: 92%;
+            padding: 20px 50px;
             width: 100%;
         }
+
+        footer #cancel {
+           float: right;
+           width: 150px;
+           height: 45px;
+}
 
         @media screen and (max-width: 600px) {
             header {
@@ -148,53 +170,55 @@
         <h2>Quantity:</h2>
     </div>
     
+    <div class="column" id="price">
+        <h2>Price:</h2>
+    </div>
     <div class="column" id="total">
         <h2>Total:</h2>
     </div>
-
     <footer>
-
+        <button id="cancel" onclick="Cancel()">Cancel Order</button>
     </footer>
 
     <script>
-function purchase() {
-    // Disable the purchase button
-    document.getElementById('Purchasebt').disabled = true;
+ function purchase() {
+            // Disable the purchase button
+            document.getElementById('Purchasebt').disabled = true;
 
-    // Get cart items from local storage
-    const cartData = localStorage.getItem('cart');
+            // Get cart items from local storage
+            const cartData = localStorage.getItem('cart');
 
-    // Check if cart is empty
-    if (!cartData || JSON.parse(cartData).length === 0) {
-        alert('Your cart is empty!');
-        // Enable the purchase button again
-        document.getElementById('Purchasebt').disabled = false;
-        return; // Stop further execution
-    }
+            // Check if cart is empty
+            if (!cartData || JSON.parse(cartData).length === 0) {
+                alert('Your cart is empty!');
+                // Enable the purchase button again
+                document.getElementById('Purchasebt').disabled = false;
+                return; // Stop further execution
+            }
 
 
-    // Pass cart items to final receipt page
-    localStorage.setItem('final_receipt', cartData);
+            // Pass cart items to final receipt page
+            localStorage.setItem('final_receipt', cartData);
 
-    // Clear the cart (local storage)
-    localStorage.removeItem('cart');
-    
-    // Redirect to final receipt page
-    window.location.href = 'final_receipt.html';
-}
+            // Clear the cart (local storage)
+            localStorage.removeItem('cart');
 
-    function removeItem(index) {
-    const cartData = localStorage.getItem('cart');
-    if (cartData) {
-        let cart = JSON.parse(cartData);
-        let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
-        let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
-        stock += removedItem.quantity; // Add the removed item's quantity back to stock
-        localStorage.setItem(removedItem.items, stock.toFixed(0)); // Update stock in local storage
-        localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
-        location.reload(); // Reload the page to reflect the changes
-    }
-}
+            // Redirect to final receipt page
+            window.location.href = 'final_receipt.html';
+        }
+
+        function removeItem(index) {
+            const cartData = localStorage.getItem('cart');
+            if (cartData) {
+                let cart = JSON.parse(cartData);
+                let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
+                let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
+                stock += removedItem.quantity; // Add the removed item's quantity back to stock
+                localStorage.setItem(removedItem.items, stock.toFixed(0)); // Update stock in local storage
+                localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+                location.reload(); // Reload the page to reflect the changes
+            }
+        }
 
         window.onload = function() {
             const cartData = localStorage.getItem('cart');
@@ -202,19 +226,43 @@ function purchase() {
                 const cart = JSON.parse(cartData);
                 let itemsHTML = '';
                 let quantityHTML = '';
+                let priceHTML = '';
                 let total = 0;
                 for (let i = 0; i < cart.length; i++) {
                     const item = cart[i];
                     itemsHTML += "<p>" + item.items + " <button onclick='removeItem(" + i + ")'>X</button></p>";
                     quantityHTML += "<p>" + item.quantity + "</p>";
+                    priceHTML += "<p>" + item.price + "</p>";
                     total += item.price * item.quantity;
                 }
                 document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
                 document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
+                document.getElementById('price').innerHTML = "<h2>Price:</h2>" + priceHTML;
                 document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
             }
         };
 
+        function Cancel() {
+    document.getElementById('cancel').disabled = true;
+    
+
+// Get cart items from local storage
+const cartData = localStorage.getItem('cart');
+if (cartData) {
+        let cart = JSON.parse(cartData);
+
+        // Iterate through each item in the cart
+        cart.forEach(item => {
+            let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
+            stock += item.quantity; // Add the item's quantity back to stock
+            localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+        });
+    }
+    localStorage.removeItem('cart');
+
+            // Redirect to final receipt page
+            window.location.href = 'DineDirect.html';
+}
     </script>
 </body>
 </html>
