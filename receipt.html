@@ -104,9 +104,7 @@
         }   
         
         .bt {
-            position: absolute;
             float: right;
-            left: 85%;
         }
 
         footer {
@@ -121,7 +119,28 @@
            float: right;
            width: 150px;
            height: 45px;
-}
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* CSS for input placeholder */
+        input[type="text"]::placeholder {
+            color: #aaa;
+        }
+
+        /* CSS for input focus state */
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #66afe9;
+            box-shadow: 0 0 5px #66afe9;
+        }
 
         @media screen and (max-width: 600px) {
             header {
@@ -129,140 +148,161 @@
             }
 
             button {
-            font-size: 6px;
-            padding: 6px;
-            border: none;
-            font-weight: 550;
-        }
+                font-size: 6px;
+                padding: 6px;
+                border: none;
+                font-weight: 550;
+            }
 
-        body h1 {
-            font-size: 8px;
-        }
+            body h1 {
+                font-size: 8px;
+            }
 
-        .column {
-            align-items: center;
-            font-size: 8px;
-            width: 33.33%;
-            border: 1px solid black;
-        }
+            .column {
+                align-items: center;
+                font-size: 8px;
+                width: 33.33%;
+                border: 1px solid black;
+            }
 
-        h2 {
-            font-size: 8px;
-            font-weight: 100;
-        }
-
+            h2 {
+                font-size: 8px;
+                font-weight: 100;
+            }
         }
     </style>
 </head>
 <body>
-  <header>
+<header>
     <button onclick="document.location='DineDirect.html'">Back to Menu</button>
+    <input type="text" id="customerName" placeholder="Your Name">
     <button class="bt" id="Purchasebt" onclick="purchase()">Purchase</button>
-  </header>
+</header>
 
-    <h1>Your Cart</h1>
+<h1>Your Cart</h1>
+
+<div class="column" id="receiptItems">
+    <h2>Items:</h2>
+</div>
+
+<div class="column" id="quantity">
+    <h2>Quantity:</h2>
+</div>
+
+<div class="column" id="price">
+    <h2>Price:</h2>
+</div>
+
+<div class="column" id="total">
+    <h2>Total:</h2>
+</div>
+<footer>
+    <button id="cancel" onclick="Cancel()">Cancel Order</button>
+</footer>
+
+<script>
+
     
-    <div class="column" id="receiptItems">
-        <h2>Items:</h2>
-    </div>
-    
-    <div class="column" id="quantity">
-        <h2>Quantity:</h2>
-    </div>
-    
-    <div class="column" id="price">
-        <h2>Price:</h2>
-    </div>
-    <div class="column" id="total">
-        <h2>Total:</h2>
-    </div>
-    <footer>
-        <button id="cancel" onclick="Cancel()">Cancel Order</button>
-    </footer>
 
-    <script>
- function purchase() {
-            // Disable the purchase button
-            document.getElementById('Purchasebt').disabled = true;
+    function purchase() {
+        // Disable the purchase button
+        document.getElementById('Purchasebt').disabled = true;
 
-            // Get cart items from local storage
-            const cartData = localStorage.getItem('cart');
+        // Get cart items from local storage
+        const cartData = localStorage.getItem('cart');
 
-            // Check if cart is empty
-            if (!cartData || JSON.parse(cartData).length === 0) {
-                alert('Your cart is empty!');
-                // Enable the purchase button again
-                document.getElementById('Purchasebt').disabled = false;
-                return; // Stop further execution
-            }
-
-
-            // Pass cart items to final receipt page
-            localStorage.setItem('final_receipt', cartData);
-
-            // Clear the cart (local storage)
-            localStorage.removeItem('cart');
-
-            // Redirect to final receipt page
-            window.location.href = 'final_receipt.html';
+        // Check if cart is empty
+        if (!cartData || JSON.parse(cartData).length === 0) {
+            alert('Your cart is empty!');
+            // Enable the purchase button again
+            document.getElementById('Purchasebt').disabled = false;
+            return; // Stop further execution
         }
 
-        function removeItem(index) {
-            const cartData = localStorage.getItem('cart');
-            if (cartData) {
-                let cart = JSON.parse(cartData);
-                let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
-                let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
-                stock += removedItem.quantity; // Add the removed item's quantity back to stock
-                localStorage.setItem(removedItem.items, stock.toFixed(0)); // Update stock in local storage
-                localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
-                location.reload(); // Reload the page to reflect the changes
-            }
-        }
-
-        window.onload = function() {
-            const cartData = localStorage.getItem('cart');
-            if (cartData) {
-                const cart = JSON.parse(cartData);
-                let itemsHTML = '';
-                let quantityHTML = '';
-                let priceHTML = '';
-                let total = 0;
-                for (let i = 0; i < cart.length; i++) {
-                    const item = cart[i];
-                    itemsHTML += "<p>" + item.items + " <button onclick='removeItem(" + i + ")'>X</button></p>";
-                    quantityHTML += "<p>" + item.quantity + "</p>";
-                    priceHTML += "<p>" + item.price + "</p>";
-                    total += item.price * item.quantity;
-                }
-                document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
-                document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
-                document.getElementById('price').innerHTML = "<h2>Price:</h2>" + priceHTML;
-                document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
-            }
+        const order = {
+            items: JSON.parse(cartData),
+            timestamp: new Date().toLocaleString() // Adding timestamp for the order
         };
 
-        function Cancel() {
-    document.getElementById('cancel').disabled = true;
-    
+        let orders = JSON.parse(localStorage.getItem('orders')) || []; // Retrieve existing orders or initialize an empty array
+        orders.push(order); // Add the new order to the list of orders
+        localStorage.setItem('orders', JSON.stringify(orders)); // Update the local storage with the updated list of orders
 
-// Get cart items from local storage
-const cartData = localStorage.getItem('cart');
-if (cartData) {
-        let cart = JSON.parse(cartData);
 
-        // Iterate through each item in the cart
-        cart.forEach(item => {
-            let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
-            stock += item.quantity; // Add the item's quantity back to stock
-            localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
-        });
+        // Pass cart items to final receipt page
+        localStorage.setItem('final_receipt', cartData);
+
+        // Clear the cart (local storage)
+        localStorage.removeItem('cart');
+
+
+        // Get customer name
+        const customerName = document.getElementById('customerName').value;
+        if (customerName === '') {
+            alert('Please enter your name.');
+            return; // Stop further execution
+        }
+        // Store customer name in localStorage
+        localStorage.setItem('customerName', customerName);
+        // Redirect to final receipt page
+        window.location.href = 'final_receipt.html';
     }
-    localStorage.removeItem('cart');
 
-            // Redirect to final receipt page
-            window.location.href = 'Enter.html';
-}
-    </script>
+    function removeItem(index) {
+        const cartData = localStorage.getItem('cart');
+        if (cartData) {
+            let cart = JSON.parse(cartData);
+            let removedItem = cart.splice(index, 1)[0]; // Remove the item from the cart array based on the index
+            let stock = parseFloat(localStorage.getItem(removedItem.items)); // Retrieve stock from local storage
+            stock += removedItem.quantity; // Add the removed item's quantity back to stock
+            localStorage.setItem(removedItem.items, stock.toFixed(0)); // Update stock in local storage
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+            location.reload(); // Reload the page to reflect the changes
+        }
+    }
+
+    window.onload = function() {
+        const cartData = localStorage.getItem('cart');
+        if (cartData) {
+            const cart = JSON.parse(cartData);
+            let itemsHTML = '';
+            let quantityHTML = '';
+            let priceHTML = '';
+            let total = 0;
+            for (let i = 0; i < cart.length; i++) {
+                const item = cart[i];
+                itemsHTML += "<p>" + item.items + " <button onclick='removeItem(" + i + ")'>X</button></p>";
+                quantityHTML += "<p>" + item.quantity + "</p>";
+                priceHTML += "<p>" + item.price.toFixed(2) + "</p>";
+                total += item.price * item.quantity;
+            }
+            document.getElementById('receiptItems').innerHTML = "<h2>Items:</h2>" + itemsHTML;
+            document.getElementById('quantity').innerHTML = "<h2>Quantity:</h2>" + quantityHTML;
+            document.getElementById('price').innerHTML = "<h2>Price:</h2>" + priceHTML;
+            document.getElementById('total').innerHTML = "<h2>Total:</h2><p>" + total.toFixed(2) + "</p>";
+        }
+    };
+
+    function Cancel() {
+        document.getElementById('cancel').disabled = true;
+
+        // Get cart items from local storage
+        const cartData = localStorage.getItem('cart');
+        if (cartData) {
+            let cart = JSON.parse(cartData);
+
+            // Iterate through each item in the cart
+            cart.forEach(item => {
+                let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
+                stock += item.quantity; // Add the item's quantity back to stock
+                localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+            });
+        }
+        localStorage.removeItem('cart');
+
+        // Redirect to final receipt page
+        window.location.href = 'Enter.html';
+    }
+</script>
 </body>
 </html>

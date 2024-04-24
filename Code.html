@@ -110,13 +110,13 @@
             if (numberToProcess) {
                 const processDiv = document.getElementById('process');
                 const numbers = numberToProcess.split(',');
-                processDiv.innerHTML = numbers.map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromProcess('${number}')">Remove</button></div>`).join('');
+                processDiv.innerHTML = numbers.map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromProcess('${number}')">X</button></div>`).join('');
             }
 
             const numberToClaim = localStorage.getItem('numberToClaim');
             if (numberToClaim) {
                 const claimDiv = document.getElementById('claim');
-                claimDiv.innerHTML = numberToClaim.split(',').map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromClaim('${number}')">Remove</button></div>`).join('');
+                claimDiv.innerHTML = numberToClaim.split(',').map(number => `<div class="number-container"><p>${number}</p><button onclick="removeNumberFromClaim('${number}')">X</button></div>`).join('');
             }
         }
 

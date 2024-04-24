@@ -78,7 +78,7 @@
         <div class="receipt-header">
             <span class="number" id="Number">0</span>
             <h2>Receipt</h2>
-            <p>Thank you for your purchase!</p>
+            <p>Thank you for your purchase!<br><span id="customerName"></span></p>
         </div>
 
         <div class="receipt-items">
@@ -125,9 +125,17 @@
                 const shuffledNumbers = shuffleArray(numbers);
                 document.getElementById('Number').textContent = shuffledNumbers.join('');
 
+             // Retrieve customer name from localStorage
+            const customerName = localStorage.getItem('customerName');
+            // Display customer name
+            document.getElementById('customerName').textContent = customerName;
+                
+
                 const receiptClone = document.querySelector('.receipt').cloneNode(true);
                 receiptClone.classList.add('receipt-clone');
                 document.querySelector('.receipt').insertAdjacentElement('afterend', receiptClone);
+
+                
             }
         };
 

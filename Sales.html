@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Item Selling</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .item .name {
+            flex-grow: 1;
+        }
+        
+        .item .quantity {
+            margin-right: 20px;
+            color: #333;
+        }
+
+        #total {
+            text-align: right;
+        }
+
+        .btn {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales</h1>
+        <button class="btn" onclick="eraseAllSales()">Erase All Sales</button>
+        <button class="btn" id="day1" onclick="filterByDay(1)">Day 1</button>
+        <button class="btn" id="day2" onclick="filterByDay(2)">Day 2</button>
+        <button class="btn" id="day3" onclick="filterByDay(3)">Day 3</button>
+        <div id="itemList"></div>
+        <div id="total"></div>
+    </div>
+
+    <script>
+        // Function to update the display with sales data
+        function updateDisplay(filteredOrders) {
+            const orders = filteredOrders || JSON.parse(localStorage.getItem('orders')) || [];
+            if (orders.length > 0) {
+                let aggregatedItems = {};
+                let total = 0;
+
+                orders.forEach(order => {
+                    order.items.forEach(item => {
+                        const itemName = item.items;
+                        const itemPrice = item.price;
+                        const itemQuantity = item.quantity;
+
+                        // Check if the item already exists in the aggregated items
+                        if (aggregatedItems[itemName]) {
+                            // If it exists, update the quantity and total price
+                            aggregatedItems[itemName].quantity += itemQuantity;
+                            aggregatedItems[itemName].totalPrice += itemPrice * itemQuantity;
+                        } else {
+                            // If it doesn't exist, initialize it
+                            aggregatedItems[itemName] = {
+                                quantity: itemQuantity,
+                                totalPrice: itemPrice * itemQuantity
+                            };
+                        }
+                    });
+                });
+
+                let itemListHTML = '';
+                Object.keys(aggregatedItems).forEach(itemName => {
+                    const item = aggregatedItems[itemName];
+                    itemListHTML += "<div class='item'><span class='name'>" + itemName + "</span><span class='quantity'>Quantity: " + item.quantity + "</span><span class='price'>" + item.totalPrice.toFixed(2) + "</span></div>";
+                    total += item.totalPrice; // Add total price to overall total
+                });
+
+                document.getElementById('itemList').innerHTML = itemListHTML;
+                document.getElementById('total').innerHTML = "<p>Total: " + total.toFixed(2) + "</p>";
+            } else {
+                document.getElementById('itemList').innerHTML = "<p>No items in the receipt.</p>";
+                document.getElementById('total').innerHTML = "<p>Total: 0.00</p>";
+            }
+        }
+
+        // Function to erase all sales
+        function eraseAllSales() {
+            localStorage.removeItem('orders');
+            updateDisplay();
+        }
+
+        // Function to filter sales by day
+        function filterByDay(day) {
+            const currentDate = new Date();
+            const currentDay = currentDate.getDate();
+
+            if (day === 2 && currentDay < 2) {
+                alert("Day 2 has not passed yet. Sales data is not available.");
+                return;
+            }
+            if (day === 3 && currentDay < 3) {
+                alert("Day 3 has not passed yet. Sales data is not available.");
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const filteredOrders = orders.filter(order => {
+                // Check if the order timestamp contains the specified day
+                return order.timestamp.includes("Day " + day);
+            });
+
+            if (filteredOrders.length > 0) {
+                updateDisplay(filteredOrders);
+            } else {
+                alert("No items sold on Day " + day + ".");
+                updateDisplay(); // Update display even if no items are sold
+            }
+        }
+
+        // Automatically enable/disable filter buttons based on the current day
+        window.onload = function() {
+            const currentDate = new Date();
+            const currentDay = currentDate.getDate();
+
+            // Enable button for the current day
+            document.getElementById('day' + currentDay).disabled = false;
+
+            // If it's not yet day 2 or day 3, clear sales data for those days and disable buttons
+            if (currentDay < 2) {
+                localStorage.removeItem('orders_day2');
+                document.getElementById('day2').disabled = true;
+            } else {
+                document.getElementById('day2').disabled = false;
+            }
+            if (currentDay < 3) {
+                localStorage.removeItem('orders_day3');
+                document.getElementById('day3').disabled = true;
+            } else {
+                document.getElementById('day3').disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
