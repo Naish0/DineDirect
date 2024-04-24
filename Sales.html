@@ -92,7 +92,6 @@
                             aggregatedItems[itemName].quantity += itemQuantity;
                             aggregatedItems[itemName].totalPrice += itemPrice * itemQuantity;
                         } else {
-                            // If it doesn't exist, initialize it
                             aggregatedItems[itemName] = {
                                 quantity: itemQuantity,
                                 totalPrice: itemPrice * itemQuantity
@@ -124,31 +123,40 @@
 
         // Function to filter sales by day
         function filterByDay(day) {
-            const currentDate = new Date();
-            const currentDay = currentDate.getDate();
+    const currentDate = new Date();
+    const currentDay = currentDate.getDate();
 
-            if (day === 2 && currentDay < 2) {
-                alert("Day 2 has not passed yet. Sales data is not available.");
-                return;
-            }
-            if (day === 3 && currentDay < 3) {
-                alert("Day 3 has not passed yet. Sales data is not available.");
-                return;
-            }
+    if (day === 2 && currentDay > 2) {
+        alert("Day 2 has not passed yet. Sales data is not available.");
+        return;
+    }
+    if (day === 3 && currentDay > 3) {
+        alert("Day 3 has not passed yet. Sales data is not available.");
+        return;
+    }
 
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            const filteredOrders = orders.filter(order => {
-                // Check if the order timestamp contains the specified day
-                return order.timestamp.includes("Day " + day);
-            });
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const filteredOrders = orders.filter(order => {
+        // Check if the order timestamp contains the specified day
+        return order.timestamp.includes("Day " + day);
+    });
 
-            if (filteredOrders.length > 0) {
-                updateDisplay(filteredOrders);
-            } else {
-                alert("No items sold on Day " + day + ".");
-                updateDisplay(); // Update display even if no items are sold
+    if (filteredOrders.length > 0) {
+        updateDisplay(filteredOrders);
+    } else {
+        let dayLabel = (day === 1) ? "Day 1" : "Day " + day;
+        let hasItems = false;
+        orders.forEach(order => {
+            if (order.timestamp.includes("Day " + day) && order.items.length > 0) {
+                hasItems = true;
             }
+        });
+        if (!hasItems) {
+            
         }
+        updateDisplay(); // Update display even if no items are sold
+    }
+}
 
         // Automatically enable/disable filter buttons based on the current day
         window.onload = function() {
