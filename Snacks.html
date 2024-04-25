@@ -570,18 +570,30 @@ function Cancel() {
 const cartData = localStorage.getItem('cart');
 if (cartData) {
         let cart = JSON.parse(cartData);
-
+        
+        if (cart.length > 0) {
         // Iterate through each item in the cart
         cart.forEach(item => {
             let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
             stock += item.quantity; // Add the item's quantity back to stock
             localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
         });
-    }
+        
     localStorage.removeItem('cart');
 
             // Redirect to final receipt page
             window.location.href = 'Enter.html';
+
+        } else {
+            // If the cart is empty, show an alert and enable the cancel button
+            showAlert("Your cart is empty. Please add items before canceling.");
+            document.getElementById('cancel').disabled = false;
+        }
+    } else {
+        // If there's no cart data in local storage, show an alert
+        showAlert("Your cart is empty. Please add items before canceling.");
+        document.getElementById('cancel').disabled = false;
+    }
 }
         </script>
 </body>

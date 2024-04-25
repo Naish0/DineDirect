@@ -98,7 +98,7 @@ footer #cancel {
 .contai1 {
     display: inline-block;
     background-color: rgba(40, 128, 187, 0.507);
-    margin: 28px;
+    margin: 30px;
     width: 200px;
     height: auto;
     border-radius: 10px;
@@ -335,7 +335,7 @@ button:hover {
              <button onclick="document.location.href='Food.html'">Food</button>
          </div>
          <div class="cen">
-             <button onclick="">Snacks</button>
+             <button onclick="document.location.href='Snacks.html'">Snacks</button>
          </div>
          <div class="down">
              <button onclick="document.location.href='Drinks.html'">Drinks</button>
@@ -579,18 +579,30 @@ function Cancel() {
 const cartData = localStorage.getItem('cart');
 if (cartData) {
         let cart = JSON.parse(cartData);
-
+        
+        if (cart.length > 0) {
         // Iterate through each item in the cart
         cart.forEach(item => {
             let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
             stock += item.quantity; // Add the item's quantity back to stock
             localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
         });
-    }
+        
     localStorage.removeItem('cart');
 
             // Redirect to final receipt page
-            window.location.href = 'DineDirect.html';
+            window.location.href = 'Enter.html';
+
+        } else {
+            // If the cart is empty, show an alert and enable the cancel button
+            showAlert("Your cart is empty. Please add items before canceling.");
+            document.getElementById('cancel').disabled = false;
+        }
+    } else {
+        // If there's no cart data in local storage, show an alert
+        showAlert("Your cart is empty. Please add items before canceling.");
+        document.getElementById('cancel').disabled = false;
+    }
 }
         </script>
 </body>

@@ -29,96 +29,76 @@
     </div>
    
     <section>
-          <div><h1>Food</h1></div>
+        <div class="food"><h1>Food</h1></div>
+        <div class="contai1" data-stock="50.00">
+          <img class="pic1"src="hot.jpg" alt="image" width="200px" height="200px"/>
+          <p>Hot Dog, Egg with Rice</p>
+          <p>Price: 30.00</p>
+          <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', -1)">-</button>
+          <span class="quantity" id="text1">0</span>
+          <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', 1)">+</button>
+          <div><span class="stock">Stock: 50</span></div>
+       </div>
+       
           <div class="contai1" data-stock="50.00">
-            <img class="pic1"src="hot.jpg" alt="image" width="200px" height="200px"/>
-            <p>Hot Dog, Egg with Rice</p>
-            <p>Price: 30.00</p>
-            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', -1)">-</button>
-            <span class="quantity" id="text1">0</span>
-            <button class="b1" onclick="All('Hot Dog, Egg with Rice', 30.00, this, 'text1', 1)">+</button>
-            <div><span class="stock">Stock: 50</span></div>
-         </div>
-         
-            <div class="contai1" data-stock="50.00">
-               <img class="pic1"src="egg.jpeg" alt="image" width="200px" height="200px"/>
-               <p>Egg with Rice</p>
-               <p>Price: 25.00</p>
-               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', -1)">-</button>
-               <span class="quantity" id="text2">0</span>
-               <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', 1)">+</button>
-               <div><span class="stock">Stock: 50</span></div>
-            </div>
-            
-            <div class="contai1">
-                <img class="pic1"src="footlong.png" alt="image" width="200px" height="200px"/>
-                <p>Footlong</p>
-                <p>Price: 20.00</p>
-                <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', -1)">-</button>
-                <span class="quantity" id="text3">0</span>
-                <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="piattos.png" alt="snaks" width="200px" height="200px">
-                <p>Piattos</p>
-                <p>Price: 15.00</p>
-                <button class="b1" onclick="All('Piattos', 15.00, this, 'text4', -1)">-</button>
-                <span class="quantity" id="text4">0</span>
-                <button class="b1" onclick="All('Piattos', 15.00, this, 'text4', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="mangjuan.png" alt="snaks" width="200px" height="200px">
-                <p>Mang Juan</p>
-                <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Mang Juan', 13.00, this, 'text5', -1)">-</button>
-                <span class="quantity" id="text5">0</span>
-                <button class="b1" onclick="All('Mang Juan', 13.00, this, 'text5', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="chickenskin.png" alt="snaks" width="200px" height="200px">
-                <p>Chicken Skin</p>
-                <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Chicken Skin', 13.00, this, 'text6', -1)">-</button>
-                <span class="quantity" id="text6">0</span>
-                <button class="b1" onclick="All('Chicken Skin', 13.00, this, 'text6', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="cheesecake.png" alt="snaks" width="200px" height="200px">
-                <p>Cheese Cake</p>
-                <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Cheese Cake', 13.00, this, 'text7', -1)">-</button>
-                <span class="quantity" id="text7">0</span>
-                <button class="b1" onclick="All('Cheese Cake', 13.00, this, 'text7', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="hansel.jpg" alt="snaks" width="200px" height="200px">
-                <p>Hansel Chocolate</p>
-                <p>Price: 11.00</p>
-                <button class="b1" onclick="All('Hansel Chocolate', 11.00, this, 'text8', -1)">-</button> 
-                <span class="quantity" id="text8">0</span>
-                <button class="b1" onclick="All('Hansel Chocolate', 11.00, this, 'text8', 1)">+</button> 
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
-    
-             <div class="contai1">
-                <img src="donut.jpg" alt="snaks" width="200px" height="200px">
-                <p>Doowee Donut</p>
-                <p>Price: 13.00</p>
-                <button class="b1" onclick="All('Doowee Donut', 13.00, this, 'text9', -1)">-</button>
-                <span class="quantity" id="text9">0</span>
-                <button class="b1" onclick="All('Doowee Donut', 13.00, this, 'text9', 1)">+</button>
-                <div><span class="stock">Stock: 50</span></div>
-             </div>
+             <img class="pic1"src="egg.jpeg" alt="image" width="200px" height="200px"/>
+             <p>Egg with Rice</p>
+             <p>Price: 25.00</p>
+             <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', -1)">-</button>
+             <span class="quantity" id="text2">0</span>
+             <button class="b1" onclick="All('Egg with Rice', 25.00, this, 'text2', 1)">+</button>
+             <div><span class="stock">Stock: 50</span></div>
+          </div>
+          
+          <div class="contai1">
+              <img class="pic1"src="footlong.png" alt="image" width="200px" height="200px"/>
+              <p>Footlong</p>
+              <p>Price: 20.00</p>
+              <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', -1)">-</button>
+              <span class="quantity" id="text3">0</span>
+              <button class="b1" onclick="All('Footlong', 20.00, this, 'text3', 1)">+</button>
+              <div><span class="stock">Stock: 50</span></div>
+           </div>
+  
+           <div class="contai1">
+              <img class="pic1"src="tocino.png" alt="image" width="200px" height="200px"/>
+              <p>Tocino with Rice</p>
+              <p>Price: 35.00</p>
+              <button class="b1" onclick="All('Tocino with Rice', 35.00, this, 'text18', -1)">-</button>
+              <span class="quantity" id="text18">0</span>
+              <button class="b1" onclick="All('Tocino with Rice', 35.00, this, 'text18', 1)">+</button>
+              <div><span class="stock">Stock: 50</span></div>
+           </div>
+
+           <div class="contai1">
+              <img class="pic1"src="chicken.png" alt="image" width="200px" height="200px"/>
+              <p>Chicken with Rice</p>
+              <p>Price: 40.00</p>
+              <button class="b1" onclick="All('Chicken with Rice', 40.00, this, 'text19', -1)">-</button>
+              <span class="quantity" id="text19">0</span>
+              <button class="b1" onclick="All('Chicken with Rice', 40.00, this, 'text19', 1)">+</button>
+              <div><span class="stock">Stock: 50</span></div>
+           </div>
+
+           <div class="contai1">
+              <img class="pic1"src="adobo.png" alt="image" width="200px" height="200px"/>
+              <p>Adobo with Rice</p>
+              <p>Price: 40.00</p>
+              <button class="b1" onclick="All('Adobo with Rice', 40.00, this, 'text20', -1)">-</button>
+              <span class="quantity" id="text20">0</span>
+              <button class="b1" onclick="All('Adobo with Rice', 40.00, this, 'text20', 1)">+</button>
+              <div><span class="stock">Stock: 50</span></div>
+           </div>
+
+           <div class="contai1">
+              <img class="pic1"src="maling.jpg" alt="image" width="200px" height="200px"/>
+              <p>Maling, Egg with Rice</p>
+              <p>Price: 45.00</p>
+              <button class="b1" onclick="All('Maling, Egg with Rice', 45.00, this, 'text21', -1)">-</button>
+              <span class="quantity" id="text21">0</span>
+              <button class="b1" onclick="All('Maling, Egg with Rice', 45.00, this, 'text21', 1)">+</button>
+              <div><span class="stock">Stock: 50</span></div>
+           </div>
     </section>
       
     <div id="customAlert" class="custom">
@@ -258,18 +238,30 @@ function Cancel() {
 const cartData = localStorage.getItem('cart');
 if (cartData) {
         let cart = JSON.parse(cartData);
-
+        
+        if (cart.length > 0) {
         // Iterate through each item in the cart
         cart.forEach(item => {
             let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
             stock += item.quantity; // Add the item's quantity back to stock
             localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
         });
-    }
+        
     localStorage.removeItem('cart');
 
             // Redirect to final receipt page
             window.location.href = 'Enter.html';
+
+        } else {
+            // If the cart is empty, show an alert and enable the cancel button
+            showAlert("Your cart is empty. Please add items before canceling.");
+            document.getElementById('cancel').disabled = false;
+        }
+    } else {
+        // If there's no cart data in local storage, show an alert
+        showAlert("Your cart is empty. Please add items before canceling.");
+        document.getElementById('cancel').disabled = false;
+    }
 }
         </script>
 </body>
