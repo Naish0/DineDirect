@@ -196,6 +196,7 @@
 <div class="column" id="total">
     <h2>Total:</h2>
 </div>
+
 <footer>
     <button id="cancel" onclick="Cancel()">Cancel Order</button>
 </footer>
@@ -268,7 +269,7 @@ function purchase() {
             for (let i = 0; i < cart.length; i++) {
                 const item = cart[i];
                 itemsHTML += "<p>" + item.items + " <button onclick='removeItem(" + i + ")'>X</button></p>";
-                quantityHTML += "<p>" + item.quantity + "</p>";
+                quantityHTML += "<p>" + item.quantity + " <button onclick='decreaseQuantity(" + i + ")'>-</button> <button onclick='increaseQuantity(" + i + ")'>+</button></div></p>";
                 priceHTML += "<p>" + item.price.toFixed(2) + "</p>";
                 total += item.price * item.quantity;
             }
@@ -280,25 +281,95 @@ function purchase() {
     };
 
     function Cancel() {
-        document.getElementById('cancel').disabled = true;
+    document.getElementById('cancel').disabled = true;
+    
 
-        // Get cart items from local storage
-        const cartData = localStorage.getItem('cart');
-        if (cartData) {
-            let cart = JSON.parse(cartData);
+// Get cart items from local storage
+const cartData = localStorage.getItem('cart');
+if (cartData) {
+        let cart = JSON.parse(cartData);
+        
+        if (cart.length > 0) {
+        // Iterate through each item in the cart
+        cart.forEach(item => {
+            let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
+            stock += item.quantity; // Add the item's quantity back to stock
+            localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+        });
+        
+    localStorage.removeItem('cart');
 
-            // Iterate through each item in the cart
-            cart.forEach(item => {
-                let stock = parseFloat(localStorage.getItem(item.items)); // Retrieve stock from local storage
-                stock += item.quantity; // Add the item's quantity back to stock
-                localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
-            });
+            // Redirect to final receipt page
+            window.location.href = 'Enter.html';
+
+        } else {
+            // If the cart is empty, show an alert and enable the cancel button
+            alert("Your cart is empty. Please add items before canceling.");
+            document.getElementById('cancel').disabled = false;
         }
-        localStorage.removeItem('cart');
-
-        // Redirect to final receipt page
-        window.location.href = 'Enter.html';
+    } else {
+        // If there's no cart data in local storage, show an alert
+        alert("Your cart is empty. Please add items before canceling.");
+        document.getElementById('cancel').disabled = false;
     }
+}
+
+function increaseQuantity(index) {
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+        let cart = JSON.parse(cartData);
+        cart[index].quantity++; // Increase the quantity of the item at the specified index
+        localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+        
+        // Update stock in inventory
+        let item = cart[index];
+        let stock = parseFloat(localStorage.getItem(item.items));
+        if (!isNaN(stock)) {
+            if (stock >= cart[index].quantity) {
+                stock -= 1; // Decrease the stock by 1
+                localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+            } else {
+                alert("Insufficient stock!");
+                cart[index].quantity--; // Revert the quantity increase
+                localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+            }
+        } else {
+            alert("Stock data missing for item: " + item.items);
+            cart[index].quantity--; // Revert the quantity increase
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+        }
+        
+        location.reload(); // Reload the page to reflect the changes
+    }
+}
+
+function decreaseQuantity(index) {
+    const cartData = localStorage.getItem('cart');
+    if (cartData) {
+        let cart = JSON.parse(cartData);
+        if (cart[index].quantity > 1) { // Ensure quantity doesn't go below 1
+            cart[index].quantity--; // Decrease the quantity of the item at the specified index
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+            
+            // Update stock in inventory
+            let item = cart[index];
+            let stock = parseFloat(localStorage.getItem(item.items));
+            if (!isNaN(stock)) {
+                stock += 1; // Increase the stock by 1
+                localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
+            } else {
+                alert("Stock data missing for item: " + item.items);
+                cart[index].quantity++; // Revert the quantity decrease
+                localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+            }
+            
+            location.reload(); // Reload the page to reflect the changes
+        } else {
+            alert("Quantity cannot be less than 1.");
+        }
+    }
+}
+
 </script>
 </body>
 </html>
