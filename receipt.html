@@ -324,29 +324,26 @@ function increaseQuantity(index) {
     if (cartData) {
         let cart = JSON.parse(cartData);
         cart[index].quantity++; // Increase the quantity of the item at the specified index
-        localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
         
         // Update stock in inventory
         let item = cart[index];
         let stock = parseFloat(localStorage.getItem(item.items));
+        
         if (!isNaN(stock)) {
-            if (stock >= cart[index].quantity) {
+            if (stock > 0) { // Check if stock is greater than zero
                 stock -= 1; // Decrease the stock by 1
                 localStorage.setItem(item.items, stock.toFixed(0)); // Update stock in local storage
-            } else {
-                alert("Insufficient stock!");
-                cart[index].quantity--; // Revert the quantity increase
                 localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
+                location.reload(); // Reload the page to reflect the changes
+            } else {
+                alert("Out of stock!");
             }
         } else {
             alert("Stock data missing for item: " + item.items);
-            cart[index].quantity--; // Revert the quantity increase
-            localStorage.setItem('cart', JSON.stringify(cart)); // Update the cart in local storage
         }
-        
-        location.reload(); // Reload the page to reflect the changes
     }
 }
+
 
 function decreaseQuantity(index) {
     const cartData = localStorage.getItem('cart');
